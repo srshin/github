@@ -21,6 +21,7 @@ public class OracleDBUtil {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("driver연결");
 			conn = DriverManager.getConnection(url, user, password);
 			System.out.println("db연결완료");
 			
