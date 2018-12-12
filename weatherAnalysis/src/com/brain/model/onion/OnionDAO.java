@@ -9,12 +9,14 @@ import java.util.List;
 
 import com.brain.util.OracleDBUtil;
 
+
 /**
 * @brief 조건별 양파 생산량 도출 로직 DAO
 * @details 연별 전국 양파 총 생산량
-* @author user
+* @author JungeunPark
 * @date 2018. 12. 11.
  */
+
 public class OnionDAO {
 	
 //연별 전국 양파 총 재배면적,총 생산량, 10a 당 샹산량

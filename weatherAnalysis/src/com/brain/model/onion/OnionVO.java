@@ -4,9 +4,10 @@ package com.brain.model.onion;
 /**
 * @brief 조건별 양파 생산량 도출 로직 VO
 * @details
-* @author user
+* @author "JungeunPark"
 * @date 2018. 12. 11.
  */
+
 public class OnionVO {
 
 	String year;
