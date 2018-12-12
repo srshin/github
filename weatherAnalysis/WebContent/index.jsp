@@ -9,6 +9,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
+
+
+
 <h1>Brain Mining Team Project </h1>
 
 
