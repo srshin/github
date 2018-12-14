@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,22 +33,33 @@ $(function(){
 
 
 <jsp:include page="/header.jsp"></jsp:include>
-<div class="container">
-	<div class="signup-form">
-		<h1> 가입 페이지 </h1>
-		<form action="signup.do" method="post">
-		<label for="idc">아이디</label>
-		<input type="text" name="id" id="idc" required="required">
-		<button type="button" id="idchk">아이디 중복체크</button>
-		<span id="result"></span>
-		<br>
-		<label for="password">비밀번호</label>
-		<input type="password" name="password" id="password" required="required"><br>
-		<label for="email">이메일</label>
-		<input type="email" name="email" id="email" required="required"><br>
-		<input type="submit" value="가입하기">
-		</form>
-</div>
+<div class="signup">
+	<div class="signup-screen">
+		<div class="app-title">
+			<h1> Signup </h1>
+			<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+		</div>
+		<div class="signup-from">
+			<form action="signup.do" method="post">
+				<div class="control-group">
+					<label for="id">아이디</label>
+					<input type="text" name="id" id="id" required="required"><br>
+					<button type="button" id="idchk">아이디 중복체크</button>
+					<span id="result"></span>
+				</div>
+				<div class="control-group">
+					<label for="password">비밀번호</label>
+					<input type="password" name="password" id="password" required="required"><br>
+				</div>
+				<div class="control-group">
+					<label for="email">이메일</label>
+					<input type="email" name="email" id="email" required="required"><br>
+					<input type="submit" value="가입하기">
+				</div>
+			</form>
+			<a href="${path}/login/login.do">이미 가입하셨나요?</a>
+		</div>
+	</div>
 </div>
 
 
