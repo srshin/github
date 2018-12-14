@@ -1,23 +1,41 @@
 package com.brain.weather;
 
 /**
- * @brief ¡æ∞¸ ±‚ªÛ µ•¿Ã≈Õ(2015.08~2016.08) VO
+ * @brief Í∏∞ÏÉÅ Í¥ÄÏ∏° ÏûêÎ£å(2015~2016) ÎèÑÏ∂ú VO
  * @details
  * @author "HayeonBaek"
- * @date 2018. 12. 12.
+ * @date 2018. 12. 14.
  *
  */
 public class WeatherVO {
 
 	String oneName;
+	String taDate;
 	double average;
 	double taMax;
 	double taMin;
 	double rnDay;
 	double sunLight;
-	
+
 	public WeatherVO() {
 		super();
+	}
+
+	public WeatherVO(String oneName, String taDate, double average, double taMax, double taMin, double rnDay,
+			double sunLight) {
+		super();
+		this.oneName = oneName;
+		this.taDate = taDate;
+		this.average = average;
+		this.taMax = taMax;
+		this.taMin = taMin;
+		this.rnDay = rnDay;
+		this.sunLight = sunLight;
+	}
+
+	public WeatherVO(String oneName) {
+		super();
+		this.oneName = oneName;
 	}
 
 	public WeatherVO(String oneName, double average, double taMax, double taMin, double rnDay, double sunLight) {
@@ -36,6 +54,14 @@ public class WeatherVO {
 
 	public void setOneName(String oneName) {
 		this.oneName = oneName;
+	}
+
+	public String getTaDate() {
+		return taDate;
+	}
+
+	public void setTaDate(String taDate) {
+		this.taDate = taDate;
 	}
 
 	public double getAverage() {
@@ -80,10 +106,8 @@ public class WeatherVO {
 
 	@Override
 	public String toString() {
-		return "WeatherVO [oneName=" + oneName + ", average=" + average + ", taMax=" + taMax + ", taMin=" + taMin
-				+ ", rnDay=" + rnDay + ", sunLight=" + sunLight + "]";
+		return "WeatherVO [oneName=" + oneName + ", taDate=" + taDate + ", average=" + average + ", taMax=" + taMax
+				+ ", taMin=" + taMin + ", rnDay=" + rnDay + ", sunLight=" + sunLight + "]";
 	}
 
-
-	
 }
