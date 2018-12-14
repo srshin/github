@@ -26,7 +26,29 @@
 	 xhttp.open("GET", "onionByRegion.do?"+ param);
 	 xhttp.send();
 }
-
+</script>    
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawVisualization);
+	
+	function drawVisualization() {
+	  // Some raw data (not necessarily accurate)
+	  var data = google.visualization.arrayToDataTable([
+	  	${result}
+	  ]);
+	
+	  var options = {
+	    title : 'Monthly Coffee Production by Country',
+	    vAxis: {title: 'Cups'},
+	    hAxis: {title: 'Month'},
+	    seriesType: 'bars',
+	    series: {2: {type: 'line'}}
+	  };
+	
+	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+	  chart.draw(data, options);
+	}
 </script>
 </head>
 <body>
@@ -49,6 +71,8 @@
 </select>  
 <button  onclick="retrieve();">조회</button>
 <br><br>
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 <div id="here">
 <table border="1">
