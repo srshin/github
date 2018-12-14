@@ -14,10 +14,10 @@ import com.brain.weather.WeatherVO;
 
 
 /**
-  * @brief Á¾°ü ±â»ó µ¥ÀÌÅÍ(2015.08~2016.08) Servlet
+  * @brief ê¸°ìƒ ê´€ì¸¡ ìë£Œ(2015~2016) ë„ì¶œ Servlet
   * @details
   * @author "HayeonBaek"
-  * @date 2018. 12. 12.
+  * @date 2018. 12. 14.
   *
   */
 @WebServlet("/weather/weather.do")
@@ -29,9 +29,11 @@ public class WeatherServlet extends HttpServlet {
 
 		WeatherService service = new WeatherService();
 		List<WeatherVO> list = service.selectAll();
-
+		List<WeatherVO> namelist = service.distinctOneName();
+		
+		request.setAttribute("oneNameList", namelist);
 		request.setAttribute("allList", list);
-
+		
 		request.getRequestDispatcher("/weather/weather.jsp").forward(request, response);
 
 	}

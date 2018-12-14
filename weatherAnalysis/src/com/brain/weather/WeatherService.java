@@ -3,10 +3,10 @@ package com.brain.weather;
 import java.util.List;
 
 /**
- * @brief Á¾°ü ±â»ó µ¥ÀÌÅÍ(2015.08~2016.08) Service
+ * @brief ê¸°ìƒê´€ì¸¡ ìë£Œ(2015~2016) ë„ì¶œ Service
  * @details
  * @author "HayeonBaek"
- * @date 2018. 12. 12.
+ * @date 2018. 12. 13.
  *
  */
 public class WeatherService {
@@ -20,4 +20,14 @@ public class WeatherService {
 	public List<WeatherVO> selectByOneName(String oneName) {
 		return dao.selectByOneName(oneName);
 	}
+	
+	public List<WeatherVO> distinctOneName() {
+		return dao.distinctOneName();
+	}
+	
+	public List<WeatherVO> radioList(String[] column) {
+		return dao.radioList(column);
+	}
+	
+	
 }
