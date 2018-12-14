@@ -17,5 +17,13 @@ public class OnionService {
 	public List<OnionVO> annualTotal() {
 		return dao.annualTotal();		
 	}
+	
+	public List<OnionVO> annualTotalByRegion(String selectedRegion) {
+		return dao.annualTotalByRegion(selectedRegion);
+	}
+	
+	public List<OnionVO> allRegion() {
+		return dao.allRegion();
+	}
 
 }

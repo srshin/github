@@ -20,6 +20,11 @@ public class OnionVO {
 		super();
 	}
 	
+	public OnionVO(String region) {
+		super();
+		this.region = region;
+	}
+
 	public OnionVO(String year, int area, int output, int unitOutput) {
 		super();
 		this.year = year;
