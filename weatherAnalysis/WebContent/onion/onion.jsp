@@ -63,7 +63,6 @@
 <h1> 지역별 양파 총 생산량 </h1>
 지역 : 
 <select name="region" id="region">
-  <option>전국</option>
   <c:forEach var="reg" items="${region}">
 	<option>${reg.region}</option>
 	
