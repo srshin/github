@@ -14,25 +14,25 @@ import com.brain.model.onion.OnionService;
 import com.brain.model.onion.OnionVO;
 
 /**
-* @brief 조건별 양파 생산량 도출 로직 Servlet
+* @brief 지역선택 ajax 반영 servlet
 * @details 연별 전국 양파 총 생산량
 * @author JungeunPark
-* @date 2018. 12. 11.
+* @date 2018. 12. 12.
  */
 
-@WebServlet("/onion/onion.do")
-public class OnionServlet extends HttpServlet {
+@WebServlet("/onion/onionByRegion.do")
+public class OnionServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-//연별 전국 양파 총 재배면적,총 생산량, 10a 당 샹산량
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String selectedRegion = request.getParameter("region");
 		
 		OnionService service = new OnionService();
 		
-		request.setAttribute("region", service.allRegion());
-		request.setAttribute("annualTotal", service.annualTotal());
+		request.setAttribute("totalByRegion", service.annualTotalByRegion(selectedRegion));
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/onion/onion.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/onion/onionByRegion.jsp");
 		rd.forward(request, response);
 		
 	}

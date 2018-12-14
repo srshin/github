@@ -54,5 +54,69 @@ public class OnionDAO {
 		}
 		return onionList;		
 	}
+	
+	
+	public List<OnionVO> annualTotalByRegion(String selectedRegion) {
+		
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "select * from onionTable where region ='" + selectedRegion +"'";
+		OnionVO onion = null;
+		List<OnionVO> onionList = new ArrayList<>();
+		
+		conn = OracleDBUtil.dbConnect();
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String year = rs.getString("year");
+				String region = rs.getString("region");
+				int area = rs.getInt("area");
+				int output = rs.getInt("output");
+				int unitOutput = rs.getInt("unitOutput");
+				
+				onion = new OnionVO(year, region, area, output, unitOutput);
+				onionList.add(onion);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleDBUtil.dbDisconnect(rs, st, conn);
+		}
+		return onionList;		
+	}
+	
+	
+	public List<OnionVO> allRegion() {
+		
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "select distinct region from onionTable where region <> '전국'  order by 1 ";
+		OnionVO onion = null;
+		List<OnionVO> regionList = new ArrayList<>();
+		
+		conn = OracleDBUtil.dbConnect();
+		
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String region = rs.getString("region");
+				onion = new OnionVO(region);
+				regionList.add(onion);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleDBUtil.dbDisconnect(rs, st, conn);
+		}
 
+		return regionList;		
+	}
+	
 }
