@@ -19,7 +19,7 @@ import com.brain.util.OracleDBUtil;
 
 public class OnionDAO {
 	
-//연별 전국 양파 총 재배면적,총 생산량, 10a 당 샹산량
+// 연별 전국 양파 총 재배면적,총 생산량, 10a 당 샹산량
 	public List<OnionVO> annualTotal() {
 		
 		Connection conn = null;
@@ -55,7 +55,8 @@ public class OnionDAO {
 		return onionList;		
 	}
 	
-	
+
+// 선택된 지역의 총 생산량, 총 재배면적, 10a 당 샹산량 값 가져오기
 	public List<OnionVO> annualTotalByRegion(String selectedRegion) {
 		
 		Connection conn = null;
@@ -90,12 +91,13 @@ public class OnionDAO {
 	}
 	
 	
+// 지역명 list
 	public List<OnionVO> allRegion() {
 		
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		String sql = "select distinct region from onionTable where region <> '전국'  order by 1 ";
+		String sql = "select region from regionTable order by id";
 		OnionVO onion = null;
 		List<OnionVO> regionList = new ArrayList<>();
 		
