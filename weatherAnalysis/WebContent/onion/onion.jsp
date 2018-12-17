@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <title>Brain Mining_양파 생산량 분석</title>
 
@@ -32,23 +33,27 @@
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization);
 	
-	function drawVisualization() {
-	  // Some raw data (not necessarily accurate)
-	  var data = google.visualization.arrayToDataTable([
-	  	${result}
-	  ]);
+	function drawVisualization() {  
+	  var urls= "${pageContext.request.contextPath}/onion/onionChart.do";
+	  var region = document.getElementById("region").value;
+	  var param = "?region=" + region;
+	  var jsonData = $.ajax({
+          url: urls+param,
+          dataType: "json",
+          async: false
+          }).responseText;
+	  var data = new google.visualization.DataTable(jsonData);
 	
 	  var options = {
-	    title : 'Monthly Coffee Production by Country',
-	    vAxis: {title: 'Cups'},
-	    hAxis: {title: 'Month'},
+	    title : '양파 생산량',
+	    vAxis: {title: '생산량'},
+	    hAxis: {title: '연'},
 	    seriesType: 'bars',
 	    series: {2: {type: 'line'}}
 	  };
-	
 	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 	  chart.draw(data, options);
-	}
+ 	}
 </script>
 </head>
 <body>
@@ -68,7 +73,7 @@
 	
   </c:forEach>
 </select>  
-<button  onclick="retrieve();">조회</button>
+<button  onclick="retrieve();drawVisualization();">조회</button>
 <br><br>
 
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
