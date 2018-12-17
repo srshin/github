@@ -8,6 +8,6 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
- 양파 관리
+<h1>양파데이타 관리</h1>
 </body>
 </html>

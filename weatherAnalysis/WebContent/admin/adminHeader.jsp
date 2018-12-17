@@ -10,7 +10,7 @@
 <body>
 <c:set var="path" value="${pageContext.request.contextPath }"></c:set>
 <ul class="topnav">
-<li><a class="icon" style="padding:0" href="${path }/index.jsp"><img src='${path }/image/brain.jpg' width=50 /></a></li>
+<li><a class="icon" style="padding:0" href="${path }/admin/user.do"><img src='${path }/image/brain.jpg' width=50 /></a></li>
 <li><a class="mainmenu" class="active" href="${path }/admin/user.do">회원관리 </a></li>
 <li><a class="mainmenu" href="${path }/admin/onion.do">양파데이타 관리</a></li>
 <li><a class="mainmenu" href="${path }/admin/weather.do">기상데이타 관리</a></li>
