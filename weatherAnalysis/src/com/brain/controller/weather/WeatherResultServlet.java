@@ -10,35 +10,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.brain.weather.WeatherService;
-import com.brain.weather.WeatherVO;
+import com.brain.model.weather.WeatherService;
+import com.brain.model.weather.WeatherVO;
+
 
 /**
-  * @brief 기상 관측 자료(2015~2016) 도출 Servlet2
+  * @brief 기상 관측 자료 도출 Servlet2
   * @details
   * @author "HayeonBaek"
   * @date 2018. 12. 14.
   *
   */
 @WebServlet("/weather/weather2.do")
-public class WeatherServlet2 extends HttpServlet {
+public class WeatherResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		WeatherService service = new WeatherService();
 		
+		String onename = request.getParameter("oneName");
+		String tadate = request.getParameter("taDate");
 		String value = request.getParameter("col");
-		String[] test = value.split(",");
-		System.out.println("value:"+ value);
-		System.out.println(Arrays.toString(test));
-
+		String[] column = value.split(",");
 		
-		List<WeatherVO> radiolist = service.radioList(test);
+		//System.out.println("value:"+ value);
+		//System.out.println(Arrays.toString(column));
 		
-		request.setAttribute("radioList", radiolist);
+		List<WeatherVO> resultlist = service.resultList(onename,tadate,column);
 		
-		request.getRequestDispatcher("/weather/weather2.jsp").forward(request, response);
+		request.setAttribute("resultList", resultlist); 
+		
+		request.getRequestDispatcher("/weather/weatherResult.jsp").forward(request, response);
 
 	}
 

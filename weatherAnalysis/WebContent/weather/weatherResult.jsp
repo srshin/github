@@ -5,22 +5,22 @@
 <table border="1">
 <tr>
 <td>지역명</td>
-<td>날짜</td>
+<td>기간</td>
 <td>평균 기온</td>
 <td>평균 최고기온</td>
 <td>평균 최저기온</td>
-<td>월합 강수량 </td>
-<td>일조 시간합</td>
+<td>강수량</td>
+<td>일조 시간</td>
 </tr>
-<c:forEach var="area" items="${radioList}">
+<c:forEach var="result" items="${resultList}">
 <tr>
-<td>${area.oneName}</td>
-<td>${area.taDate}</td>
-<td>${area.average}</td>
-<td>${area.taMax}</td>
-<td>${area.taMin}</td>
-<td>${area.rnDay}</td>
-<td>${area.sunLight}</td>
+<td>${result.oneName}</td>
+<td>${result.taDate}</td>
+<td>${result.average}</td>
+<td>${result.taMax}</td>
+<td>${result.taMin}</td>
+<td>${result.rnDay}</td>
+<td>${result.sunLight}</td>
 </tr>
 </c:forEach>
 </table>

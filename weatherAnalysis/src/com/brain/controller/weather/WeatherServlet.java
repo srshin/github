@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.brain.weather.WeatherService;
-import com.brain.weather.WeatherVO;
+import com.brain.model.weather.WeatherService;
+import com.brain.model.weather.WeatherVO;
 
 
 /**
-  * @brief 기상 관측 자료(2015~2016) 도출 Servlet
+  * @brief 기상 관측 자료 도출 Servlet
   * @details
   * @author "HayeonBaek"
   * @date 2018. 12. 14.
@@ -28,11 +28,14 @@ public class WeatherServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		WeatherService service = new WeatherService();
-		List<WeatherVO> list = service.selectAll();
-		List<WeatherVO> namelist = service.distinctOneName();
 		
-		request.setAttribute("oneNameList", namelist);
-		request.setAttribute("allList", list);
+		List<WeatherVO> allList = service.selectAll();
+		List<WeatherVO> nameList = service.distinctOneName(); 
+		List<WeatherVO> yearList = service.distinctTaDate();
+		
+		request.setAttribute("all", allList); 
+		request.setAttribute("oneName", nameList); 
+		request.setAttribute("Year", yearList); 
 		
 		request.getRequestDispatcher("/weather/weather.jsp").forward(request, response);
 
