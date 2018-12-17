@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
- 어드민만 올 수 있는 유저 관리 페이지 입니다.
+<h1>회원 관리</h1>
 
 </body>
 </html>

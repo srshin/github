@@ -8,6 +8,6 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
-기상 관리
+<h1>기상데이타 관리</h1>
 </body>
 </html>
