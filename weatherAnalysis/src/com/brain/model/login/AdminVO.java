@@ -15,6 +15,18 @@ public class AdminVO {
 	public AdminVO() {
 		super();
 	}
+	
+
+	public AdminVO(String id) {
+		super();
+		this.id = id;
+	}
+
+	public AdminVO(String id, String password) {
+		super();
+		this.id = id;
+		this.password = password;
+	}
 
 	public AdminVO(String id, String password, String email) {
 		super();

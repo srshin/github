@@ -36,4 +36,9 @@ public class LoginService {
 		return dao.IdCheck(idc);
 	}
 
+	public AdminVO loginCheck2(String id, String password) {
+		
+		return dao.loginCheck2(id, password);
+	}
+
 }
