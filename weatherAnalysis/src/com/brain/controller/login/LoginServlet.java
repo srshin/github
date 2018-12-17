@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.brain.model.login.AdminVO;
 import com.brain.model.login.LoginService;
 import com.brain.model.login.UserVO;
 
@@ -28,11 +29,17 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Object sessionObj = session.getAttribute("user");
+		Object sessionObjAd = session.getAttribute("admin");
 		
-		if(sessionObj != null) {
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+		if(sessionObjAd == null) {
+			if(sessionObj == null) {
+				request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			}else {
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
+			}
+			
 		} else {
-			request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/admin/user.do");
 		}
 		
 		
@@ -43,29 +50,48 @@ public class LoginServlet extends HttpServlet {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		UserVO user = null;
+		AdminVO admin = null;
 		
-		LoginService service = new LoginService();
-		UserVO user = service.loginCheck(id, password);
 		HttpSession session = request.getSession();
+		LoginService service = new LoginService();
 		
-		if(user==null) {
-			//인증실패
-			request.setAttribute("loginResult", "no");
-			request.setAttribute("message", "로그인실패");
-	
-			RequestDispatcher rd = request.getRequestDispatcher("result2.jsp");
-			rd.forward(request, response);
+		admin = service.loginCheck2(id, password);
+		
+		if(admin==null) {
+			//user
+			
+			user = service.loginCheck(id, password);
+			System.out.println(id + ":" + password);
+			System.out.println("유저 :" + user);
+			if(user==null) {
+				// 인증실패
+				request.setAttribute("loginResult", "no");
+				request.setAttribute("message", "로그인실패");
+		
+				RequestDispatcher rd = request.getRequestDispatcher("result2.jsp");
+				rd.forward(request, response);
+				
+			}else {
+				// user 인증 성공
+				request.setAttribute("loginResult", "user");
+				request.setAttribute("message", "유저 로그인성공");
+		
+				session.setAttribute("user", user);
+				response.sendRedirect("../index.jsp");
+				
+			}
 			
 		} else {
-			request.setAttribute("loginResult", "yes");
-			request.setAttribute("message", "로그인성공");
-	
-			session.setAttribute("user", user);
-			response.sendRedirect("../index.jsp");
-		}
+			// admin 인증 성공
+				request.setAttribute("loginResult", "admin");
+				request.setAttribute("message", "어드민 로그인성공");
 		
-		
-		
+				session.setAttribute("admin", admin);
+				response.sendRedirect("../admin/user.do");
+			
+		}	
+
 	}
 
 }

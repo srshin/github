@@ -71,6 +71,49 @@ public class LoginDAO {
 		return user;
 	}
 	
+	public AdminVO loginCheck2(String id, String password) {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from adminTable "
+				+ "where id=? and password=? ";
+		
+		AdminVO admin = null;
+		conn = OracleDBUtil.dbConnect();
+		
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, id);
+			st.setString(2, password);
+			
+			rs = st.executeQuery();
+			if(rs.next()) {
+				admin = makeAdmin(rs);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleDBUtil.dbDisconnect(rs, st, conn);
+		}
+		System.out.println("logincheck2:" + admin);
+		return admin;
+	}
+
+	
+	
+	private AdminVO makeAdmin(ResultSet rs) throws SQLException {
+		
+		String id = rs.getString(1);
+		String password = rs.getString(2);
+		String email = rs.getString(3);
+		
+		AdminVO admin = new AdminVO(id, password, email);
+		return admin;
+	}
+
 	public UserVO IdCheck(String idc) {
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -104,7 +147,5 @@ public class LoginDAO {
 		UserVO user = new UserVO(id, password, email);
 		return user;
 	}
-
-	
 
 }
