@@ -1,4 +1,4 @@
-package com.brain.weather;
+package com.brain.model.weather;
 
 import java.util.List;
 
@@ -16,17 +16,17 @@ public class WeatherService {
 	public List<WeatherVO> selectAll() {
 		return dao.selectAll();
 	}
-	
-	public List<WeatherVO> selectByOneName(String oneName) {
-		return dao.selectByOneName(oneName);
-	}
-	
+		
 	public List<WeatherVO> distinctOneName() {
 		return dao.distinctOneName();
 	}
 	
-	public List<WeatherVO> radioList(String[] column) {
-		return dao.radioList(column);
+	public List<WeatherVO> distinctTaDate() {
+		return dao.distinctTaDate();
+	}
+	
+	public List<WeatherVO> resultList(String oneName,String taDate, String[] col){
+		return dao.resultList(oneName,taDate, col);
 	}
 	
 	

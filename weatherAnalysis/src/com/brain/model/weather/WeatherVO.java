@@ -1,10 +1,10 @@
-package com.brain.weather;
+package com.brain.model.weather;
 
 /**
- * @brief 기상 관측 자료(2015~2016) 도출 VO
+ * @brief 기상 관측 자료 도출 VO
  * @details
  * @author "HayeonBaek"
- * @date 2018. 12. 14.
+ * @date 2018. 12. 11.
  *
  */
 public class WeatherVO {
@@ -21,6 +21,18 @@ public class WeatherVO {
 		super();
 	}
 
+
+	public WeatherVO(String oneName) {
+		super();
+		this.oneName = oneName;
+	}
+
+	public WeatherVO(String oneName, String taDate) {
+		super();
+		this.oneName = oneName;
+		this.taDate = taDate;
+	}
+
 	public WeatherVO(String oneName, String taDate, double average, double taMax, double taMin, double rnDay,
 			double sunLight) {
 		super();
@@ -33,21 +45,8 @@ public class WeatherVO {
 		this.sunLight = sunLight;
 	}
 
-	public WeatherVO(String oneName) {
-		super();
-		this.oneName = oneName;
-	}
 
-	public WeatherVO(String oneName, double average, double taMax, double taMin, double rnDay, double sunLight) {
-		super();
-		this.oneName = oneName;
-		this.average = average;
-		this.taMax = taMax;
-		this.taMin = taMin;
-		this.rnDay = rnDay;
-		this.sunLight = sunLight;
-	}
-
+	
 	public String getOneName() {
 		return oneName;
 	}

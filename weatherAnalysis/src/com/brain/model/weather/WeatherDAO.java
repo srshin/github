@@ -1,4 +1,4 @@
-package com.brain.weather;
+package com.brain.model.weather;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +10,17 @@ import java.util.List;
 import com.brain.util.OracleDBUtil;
 
 /**
- * @brief 기상 관측 자료(2015~2016) 도출 DAO
+ * @brief 기상 관측 자료 도출 DAO
  * @details
  * @author "HayeonBaek"
- * @date 2018. 12. 14.
+ * @date 2018. 12. 11.
  *
  */
 public class WeatherDAO {
 
-	// selectAll
+	// 전체 조회
 	public List<WeatherVO> selectAll() {
+		
 		List<WeatherVO> allList = new ArrayList<>();
 		WeatherVO weather = null;
 		Connection conn = null;
@@ -45,36 +46,10 @@ public class WeatherDAO {
 		return allList;
 	}
 
-	// selectByOneName
-	public List<WeatherVO> selectByOneName(String oneName) {
-
-		List<WeatherVO> stnlist = new ArrayList<>();
-		WeatherVO weather = null;
-		Connection conn = null;
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		String sql = "select * from weathertable3 where onename = ? order by onename, tadate";
-		conn = OracleDBUtil.dbConnect();
-
-		try {
-			st = conn.prepareStatement(sql);
-			st.setString(1, oneName);
-			rs = st.executeQuery();
-
-			while (rs.next()) {
-				weather = makeWeather(rs);
-				stnlist.add(weather);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return stnlist;
-	}
-
+	// oneName 칼럼명 가져오기
 	public List<WeatherVO> distinctOneName() {
-
-		List<WeatherVO> onenameList = new ArrayList<>();
+		
+		List<WeatherVO> oneNameList = new ArrayList<>();
 		WeatherVO weather = null;
 		Connection conn = null;
 		Statement st = null;
@@ -87,8 +62,9 @@ public class WeatherDAO {
 			rs = st.executeQuery(sql);
 
 			while (rs.next()) {
-				weather = new WeatherVO(rs.getString(1));
-				onenameList.add(weather);
+				weather = new WeatherVO();
+				weather.setOneName(rs.getString(1));
+				oneNameList.add(weather);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,33 +72,71 @@ public class WeatherDAO {
 		} finally {
 			OracleDBUtil.dbDisconnect(rs, st, conn);
 		}
-		return onenameList;
+		return oneNameList;
 	}
 
-	public List<WeatherVO> radioList(String[] col) {
-		List<WeatherVO> radiolist = new ArrayList<>();
+	// taDate 칼럼명 가져오기
+	public List<WeatherVO> distinctTaDate() {
+
+		List<WeatherVO> taDateList = new ArrayList<>();
+		WeatherVO weather = null;
+		Connection conn = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String sql = "select distinct substr(tadate,1,4) taDate from weathertable3 order by 1";
+		conn = OracleDBUtil.dbConnect();
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+
+			while (rs.next()) {
+				weather = new WeatherVO();
+				weather.setTaDate(rs.getString(1));
+				taDateList.add(weather);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleDBUtil.dbDisconnect(rs, st, conn);
+		}
+		return taDateList;
+
+	}
+
+	// ResultList(조건별 조회)
+	public List<WeatherVO> resultList(String oneName, String taDate, String[] col) {
+		
+		oneName = oneName.equals("전체") ? "%" : oneName;
+		taDate = taDate.equals("전체") ? "%" : taDate;
+
+		List<WeatherVO> resultList = new ArrayList<>();
 		WeatherVO weather = null;
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
-		String sql1 = "select oneName ";
-		String sql2 = " from weathertable3 where oneName = ?";
+		String sql1 = "select oneName, taDate ";
+		String sql2 = " from weathertable3 where oneName like ? and substr(tadate,1,4) like ?";
 
-		for (int i = 1; i < col.length; i++) {
+		for (int i = 0; i < col.length; i++) {
 			sql1 += ", " + col[i];
 		}
 
-		System.out.println("column:" + col[0]);
 		String sql = sql1 + sql2;
+		
+		//System.out.println("column:" + col[0]);
 		System.out.println("sql:" + sql);
+		
 		conn = OracleDBUtil.dbConnect();
 		try {
 			st = conn.prepareStatement(sql);
-			st.setString(1, col[0]);
+			
+			st.setString(1, oneName);
+			st.setString(2, taDate);
+
 			rs = st.executeQuery();
 
-			String taDate = null;
 			double average = 0;
 			double taMax = 0;
 			double taMin = 0;
@@ -130,12 +144,9 @@ public class WeatherDAO {
 			double sunLight = 0;
 
 			while (rs.next()) {
+				for (int i = 0; i < col.length; i++) {
 
-				for (int i = 1; i < col.length; i++) {
-
-					if (col[i].equals("taDate")) {
-						taDate = rs.getString(col[i]);
-					} else if (col[i].equals("average")) {
+					if (col[i].equals("average")) {
 						average = rs.getDouble(col[i]);
 					} else if (col[i].equals("taMax")) {
 						taMax = rs.getDouble(col[i]);
@@ -148,9 +159,10 @@ public class WeatherDAO {
 					}
 				}
 
-				weather = new WeatherVO(col[0], taDate, average, taMax, taMin, rnDay, sunLight);
-				System.out.println("weather: " + weather);
-				radiolist.add(weather);
+				weather = new WeatherVO(rs.getString("oneName"), rs.getString("taDate"), 
+						average, taMax, taMin, rnDay, sunLight);
+				//System.out.println("radiolist: " + weather);
+				resultList.add(weather);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -158,11 +170,12 @@ public class WeatherDAO {
 		} finally {
 			OracleDBUtil.dbDisconnect(rs, st, conn);
 		}
-		return radiolist;
+		return resultList;
 	}
 
 	// makeWeather
 	private WeatherVO makeWeather(ResultSet rs) throws SQLException {
+		
 		String oneName = rs.getString("oneName");
 		String taDate = rs.getString("taDate");
 		double average = rs.getDouble("average");
