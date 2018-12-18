@@ -25,5 +25,8 @@ public class OnionService {
 	public List<OnionVO> allRegion() {
 		return dao.allRegion();
 	}
+	public List<OnionVO> allRegionbyYear(String year) {
+		return dao.allRegionbyYear(year);
+	}
 
 }
