@@ -12,7 +12,7 @@ import java.util.List;
 
 public class OnionService {
 	
-	OnionDAO dao = new OnionDAO();
+	static OnionDAO dao = new OnionDAO();
 	
 	public List<OnionVO> annualTotal() {
 		return dao.annualTotal();		
@@ -22,8 +22,24 @@ public class OnionService {
 		return dao.annualTotalByRegion(selectedRegion);
 	}
 	
-	public List<OnionVO> allRegion() {
+	public List<String> allRegion() {
 		return dao.allRegion();
+	}
+
+	public List<String> allYear() {
+		return dao.allYear();
+	}
+	
+	public List<OnionVO> output() {
+		return dao.output();
+	}
+	
+	public List<OnionVO> area() {
+		return dao.area();
+	}
+	
+	public List<OnionVO> unitOutput() {
+		return dao.unitOutput();
 	}
 
 }
