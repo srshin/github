@@ -1,7 +1,6 @@
 package com.brain.controller.onion;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,30 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.brain.model.onion.OnionService;
-import com.brain.model.onion.OnionVO;
 
-/**
-* @brief 지역선택 ajax 반영 servlet
-* @details 연별 전국 양파 총 생산량
-* @author JungeunPark
-* @date 2018. 12. 12.
- */
 
-@WebServlet("/onion/onionByRegion.do")
-public class OnionServlet2 extends HttpServlet {
+ /**
+* @brief 전국 양파 총생산량 연별 추이 Servlet
+* @details
+* @author "JungeunPark"
+* @date 2018. 12. 16.
+*/
+
+@WebServlet("/onion/output.do")
+public class OutputServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+//연별 전국 양파 총생산량 변화추	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String selectedRegion = request.getParameter("region");
-		
+
 		OnionService service = new OnionService();
 		
-		request.setAttribute("totalByRegion", service.annualTotalByRegion(selectedRegion));
+		request.setAttribute("regionList", service.allRegion());
+		request.setAttribute("yearList", service.allYear());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/onion/onionByRegion.jsp");
+		request.setAttribute("outputList", service.output());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/onion/output.jsp");
 		rd.forward(request, response);
+		
 		
 	}
 
 }
+
+
+
+
+
+
