@@ -59,17 +59,19 @@
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
 
+<c:set var="path" value="${pageContext.request.contextPath }/onion"></c:set>
 <ul class="subul">
-  <li class="subli" ><a class="active" href="#home">Home</a></li>
-  <li class="subli"><a  href="#news">News</a></li>
-  <li class="subli"><a  href="#contact">Contact</a></li>
+  <li class="subli" ><a class="active" href="${path }/onion.do">연도별·지역별 생산규모</a></li>
+  <li class="subli"><a  href="${path }/output.do">연도별·지역간 생산량 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/area.do">연도별·지역간 재배면적 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/unitOutput.do">연도별·지역간 생산성 변화 추이</a></li>
 </ul>
 
-<h1> 지역별 양파 총 생산량 </h1>
+<h1> 연도별·지역별 양파 총 생산량 </h1>
 지역 : 
 <select name="region" id="region">
-  <c:forEach var="reg" items="${region}">
-	<option>${reg.region}</option>
+  <c:forEach var="region" items="${region}">
+	<option>${region}</option>
 	
   </c:forEach>
 </select>  
