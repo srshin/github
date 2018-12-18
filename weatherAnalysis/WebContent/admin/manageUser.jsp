@@ -55,10 +55,10 @@ function retrieve(){
 <div id="here">
 <table border="1">
 	<tr>
-		<td>아이디</td>
-		<td>패스워드</td>
-		<td>이메일</td>
-		<td>회원관리</td>
+		<th>아이디</th>
+		<th>패스워드</th>
+		<th>이메일</th>
+		<th>회원관리</th>
 	</tr>
 	<c:forEach items="${allUser }" var="allUser">
 	<tr>
