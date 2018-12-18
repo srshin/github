@@ -266,5 +266,43 @@ public class OnionDAO {
 						System.out.println(unitOutputList);
 						return unitOutputList;		
 					}				
-	
+//지정한 연도에 대한 전국 각 지역의 생산량 
+public List<OnionVO> allRegionbyYear(String year) {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+
+		String sql = "select * from ( select  region, area,output,unitOutput from onionTable "
+				+ "where region !='전국' and year =? order by  output desc ) where rownum <=6";
+		OnionVO onion = null;
+		List<OnionVO> list = new ArrayList<>();
+		
+		conn = OracleDBUtil.dbConnect();
+		
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1,year);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				String region = rs.getString("region");
+				int area = rs.getInt("area");
+				int output = rs.getInt("output");
+				int unitOutput = rs.getInt("unitOutput");
+				
+				onion = new OnionVO(year, region, area, output, unitOutput);
+				list.add(onion);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			OracleDBUtil.dbDisconnect(rs, st, conn);
+		}
+		return list;		
+	}
+	  
+  
 }
+

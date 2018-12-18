@@ -2,7 +2,6 @@ package com.brain.model.onion;
 
 import java.util.List;
 
-
 /**
 * @brief 조건별 양파 생산량 도출 로직 Service
 * @details
@@ -41,5 +40,9 @@ public class OnionService {
 	public List<OnionVO> unitOutput() {
 		return dao.unitOutput();
 	}
+  public List<OnionVO> allRegionbyYear(String year) {
+		return dao.allRegionbyYear(year);
+	}
 
 }
+
