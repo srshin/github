@@ -1,26 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+${oneName}
+${conditionTitle}
 <table border="1">
-<tr>
-<td>지역명</td>
-<td>기간</td>
-<td>평균 기온</td>
-<td>평균 최고기온</td>
-<td>평균 최저기온</td>
-<td>강수량</td>
-<td>일조 시간</td>
-</tr>
-<c:forEach var="result" items="${resultList}">
-<tr>
-<td>${result.oneName}</td>
-<td>${result.taDate}</td>
-<td>${result.average}</td>
-<td>${result.taMax}</td>
-<td>${result.taMin}</td>
-<td>${result.rnDay}</td>
-<td>${result.sunLight}</td>
-</tr>
-</c:forEach>
+		<c:forEach var="result" items="${resultString}">
+	<tr>
+			<td>${result[0]}</td>
+			<td>${result[1]}</td>
+			<td>${result[2]}</td>
+			<td>${result[3]}</td>
+			<td>${result[4]}</td>
+			<td>${result[5]}</td>
+			<td>${result[6]}</td>
+			<td>${result[7]}</td>
+			<td>${result[8]}</td>
+			<td>${result[9]}</td>
+			<td>${result[10]}</td>
+			<td>${result[11]}</td>
+			<td>${result[12]}</td>
+	</tr>
+		</c:forEach>
+
 </table>
