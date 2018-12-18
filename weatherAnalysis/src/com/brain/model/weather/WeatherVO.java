@@ -10,43 +10,38 @@ package com.brain.model.weather;
 public class WeatherVO {
 
 	String oneName;
-	String taDate;
+	String year;
+	String month;
 	double average;
 	double taMax;
 	double taMin;
 	double rnDay;
 	double sunLight;
+	int unitOutput;
 
 	public WeatherVO() {
 		super();
 	}
-
 
 	public WeatherVO(String oneName) {
 		super();
 		this.oneName = oneName;
 	}
 
-	public WeatherVO(String oneName, String taDate) {
+	public WeatherVO(String oneName, String year, String month, double average, double taMax, double taMin,
+			double rnDay, double sunLight, int unitOutput) {
 		super();
 		this.oneName = oneName;
-		this.taDate = taDate;
-	}
-
-	public WeatherVO(String oneName, String taDate, double average, double taMax, double taMin, double rnDay,
-			double sunLight) {
-		super();
-		this.oneName = oneName;
-		this.taDate = taDate;
+		this.year = year;
+		this.month = month;
 		this.average = average;
 		this.taMax = taMax;
 		this.taMin = taMin;
 		this.rnDay = rnDay;
 		this.sunLight = sunLight;
+		this.unitOutput = unitOutput;
 	}
 
-
-	
 	public String getOneName() {
 		return oneName;
 	}
@@ -55,12 +50,20 @@ public class WeatherVO {
 		this.oneName = oneName;
 	}
 
-	public String getTaDate() {
-		return taDate;
+	public String getYear() {
+		return year;
 	}
 
-	public void setTaDate(String taDate) {
-		this.taDate = taDate;
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 	public double getAverage() {
@@ -103,10 +106,20 @@ public class WeatherVO {
 		this.sunLight = sunLight;
 	}
 
+	public int getUnitOutput() {
+		return unitOutput;
+	}
+
+	public void setUnitOutput(int unitOutput) {
+		this.unitOutput = unitOutput;
+	}
+
 	@Override
 	public String toString() {
-		return "WeatherVO [oneName=" + oneName + ", taDate=" + taDate + ", average=" + average + ", taMax=" + taMax
-				+ ", taMin=" + taMin + ", rnDay=" + rnDay + ", sunLight=" + sunLight + "]";
+		return "WeatherVO [oneName=" + oneName + ", year=" + year + ", month=" + month + ", average=" + average
+				+ ", taMax=" + taMax + ", taMin=" + taMin + ", rnDay=" + rnDay + ", sunLight=" + sunLight
+				+ ", unitOutput=" + unitOutput + "]";
 	}
+
 
 }

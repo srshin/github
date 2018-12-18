@@ -25,21 +25,38 @@ import com.brain.model.weather.WeatherVO;
 public class WeatherResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		WeatherService service = new WeatherService();
 		
-		String onename = request.getParameter("oneName");
-		String tadate = request.getParameter("taDate");
-		String value = request.getParameter("col");
-		String[] column = value.split(",");
+		String oneName = request.getParameter("oneName");
 		
-		//System.out.println("value:"+ value);
-		//System.out.println(Arrays.toString(column));
+		String condition = request.getParameter("condition");
+		String conditionTitle = null;
+		if(condition.equals("average")) {
+			conditionTitle = "평균 기온";
+		} else if (condition.equals("taMax")) {
+			conditionTitle = "평균 최고기온";
+		} else if (condition.equals("taMin")) {
+			conditionTitle = "평균최저기온";
+		} else if (condition.equals("rnDay")) {
+			conditionTitle = "강수량";
+		} else if (condition.equals("sunLight")) {
+			conditionTitle = "일조시간";
+		}
 		
-		List<WeatherVO> resultlist = service.resultList(onename,tadate,column);
+		String[][] resultString = service.resultString(oneName, condition);
 		
-		request.setAttribute("resultList", resultlist); 
+		request.setAttribute("resultString", resultString);
+		
+		request.setAttribute("oneName", oneName);
+		request.setAttribute("conditionTitle", conditionTitle);
 		
 		request.getRequestDispatcher("/weather/weatherResult.jsp").forward(request, response);
 
