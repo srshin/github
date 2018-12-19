@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
  * @date 2018. 12. 17.
  */
 
+
 @WebServlet("/index/indexGeo.do")
 public class IndexGeoServlet extends HttpServlet {
 
