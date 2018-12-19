@@ -48,7 +48,7 @@ public class SignupServlet extends HttpServlet {
 			request.setAttribute("message", "가입을 환영합니다.");
 			
 		}else {
-			request.setAttribute("message", "가입실패");
+			request.setAttribute("message", "아이디가 중복되었습니다.");
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
 		rd.forward(request, response);

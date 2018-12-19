@@ -5,12 +5,12 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
     
 
-<table border="1">
+<table id="customers">
 	<tr>
-		<td>아이디</td>
-		<td>패스워드</td>
-		<td>이메일</td>
-		<td>회원관리</td>
+		<th>아이디</th>
+		<th>패스워드</th>
+		<th>이메일</th>
+		<th>회원관리</th>
 	</tr>
 	<c:forEach items="${userlist }" var="userlist">
 	<tr>

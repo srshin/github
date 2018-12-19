@@ -85,7 +85,7 @@ public List<UserVO> selectAllUser() {
 		String sql = "select * from userTable where 1=1 ";
 		
 		if(!id.equals("0")) sql += " and id=" + "'" + id + "'";
-		if(!email.equals("0")) sql += " and email=" + "'" + email + "'";
+		if(!email.equals("0")) sql += " and email like" + "'" + "%" + email + "%" + "'";
 		
 		UserVO user = null;
 		List<UserVO> userlist = new ArrayList<>();
