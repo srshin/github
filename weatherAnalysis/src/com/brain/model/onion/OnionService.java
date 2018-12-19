@@ -44,10 +44,7 @@ public class OnionService {
 	public List<OnionVO> unitOutput() {
 		return dao.unitOutput();
 	}
-	
-  public List<OnionVO> allRegionbyYear(String year) {
-		return dao.allRegionbyYear(year);
-	}
+
 
 }
 

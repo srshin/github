@@ -1,4 +1,4 @@
-package com.bran.controller.index;
+package com.brain.controller.index;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -54,22 +54,23 @@ public class IndexGeoServlet extends HttpServlet {
 		col2.addProperty("type", "number");
 		col2.addProperty("label", "Value");
 		arryCols.add(col2);
-		List<GeoData> list = Arrays.asList(new GeoData("KR-11", "서울특별시", 1), 
-				new GeoData("KR-26","부산광역시", 2/10), 
-				new GeoData("KR-27", "대구광역시", 3/10),
-				new GeoData("KR-28", "인천광역시", 4), 
-				new GeoData("KR-29", "광주광역시", 5), 
-				new GeoData("KR-30", "대전광역시", 6), 
-				new GeoData("KR-31", "울산광역시", 7),
-				new GeoData("KR-41", "경기도", 8), 
-				new GeoData("KR-42", "강원도", 9), 
-				new GeoData("KR-43", "충청북도", 10), 
-				new GeoData("KR-44", "충청남도",11),
-				new GeoData("KR-45", "전라북도", 12), 
-				new GeoData("KR-46", "전라남도", 13), 
-				new GeoData("KR-47", "경상북도", 14), 
-				new GeoData("KR-48", "경상남도", 15),
-				new GeoData("KR-49", "제주도", 16));
+		List<GeoData> list = Arrays.asList(
+				new GeoData("KR-11", "서울특별시", 1), 
+				new GeoData("KR-26","부산광역시", 1), 
+				new GeoData("KR-27", "대구광역시", 1),
+				new GeoData("KR-28", "인천광역시", 1), 
+				new GeoData("KR-29", "광주광역시", 1), 
+				new GeoData("KR-30", "대전광역시", 1), 
+				new GeoData("KR-31", "울산광역시", 1),
+				new GeoData("KR-41", "경기도", 2), 
+				new GeoData("KR-42", "강원도", 2), 
+				new GeoData("KR-43", "충청북도", 2), 
+				new GeoData("KR-44", "충청남도",4),
+				new GeoData("KR-45", "전라북도", 9), 
+				new GeoData("KR-46", "전라남도", 46), 
+				new GeoData("KR-47", "경상북도", 11), 
+				new GeoData("KR-48", "경상남도", 21),
+				new GeoData("KR-49", "제주도", 7));
 
 		for (GeoData geo : list) {
 			JsonArray ajaxArryRowsC = new JsonArray();
