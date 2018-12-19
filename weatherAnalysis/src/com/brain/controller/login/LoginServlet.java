@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 			if(user==null) {
 				// 인증실패
 				request.setAttribute("loginResult", "no");
-				request.setAttribute("message", "아이디 또는 비밀번호가 잘못되었습니다.");
+				request.setAttribute("message", "아이디 또는 비밀번호 오류");
 		
 				RequestDispatcher rd = request.getRequestDispatcher("result2.jsp");
 				rd.forward(request, response);

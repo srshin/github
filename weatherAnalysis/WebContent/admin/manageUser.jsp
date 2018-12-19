@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
@@ -46,12 +47,14 @@ function retrieve(){
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
-<h1>회원 관리</h1>
-<hr>
-아이디 : <input type="text" id="id"><br>
-이메일 : <input type="email" id="email"><br>
-<button onclick="retrieve();">조회</button>
-<hr>
+
+<div id = "search">
+<a href="${pageContext.request.contextPath}/admin/user.do"><h2 class='admin'>회원조회</h2></a>
+<input type="text" id="id" class='ipt' placeholder="아이디">
+<input type="email" id="email" class='ipt' placeholder="이메일">
+<button class='btn btn-primary' onclick="retrieve();">조회하기</button>
+</div>
+
 <div id="here">
 <table id="customers">
 	<tr>
@@ -65,7 +68,7 @@ function retrieve(){
 		<td>${allUser.id }</td>
 		<td>${allUser.password }</td>
 		<td>${allUser.email }</td>
-		<td><button onclick="call2('${allUser.id}');">수정</button><button onclick="call('${allUser.id}');">삭제</button></td>
+		<td><div class="button"><button class='btn btn-default' onclick="call2('${allUser.id}');">수정</button><button class='btn btn-danger' onclick="call('${allUser.id}');">삭제</button></div></td>
 	</tr>
 	</c:forEach>
 </table>

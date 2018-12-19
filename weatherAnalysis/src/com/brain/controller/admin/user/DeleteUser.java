@@ -33,8 +33,9 @@ public class DeleteUser extends HttpServlet {
 			
 			String uid = request.getParameter("userid");
 	
-					
-			request.setAttribute("message", u_service.deleteUser(uid)>0?"삭제성공":"삭제실패");
+			request.setAttribute("did", uid);		
+			request.setAttribute("message", u_service.deleteUser(uid)>0?"삭제되었습니다":"삭제실패");
+			
 			
 			request.getRequestDispatcher("result.jsp").forward(request, response);
 		}

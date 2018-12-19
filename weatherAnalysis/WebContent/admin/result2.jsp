@@ -4,17 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh"   content="3;url=user.do">
+<meta http-equiv="refresh"   content="4;url=user.do">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
-<h1>수정결과</h1>
 
-<p>${message}</p>
-<p>아이디 : ${user.id}</p>
-<p>수정된 비밀번호 : ${user.password}</p>
-<p>수정된 이메일 : ${user.email}</p>
+<div id ="search">
+<h2 class="admin">${message}</h2>
+
+</div>
+<table id="customers">
+	<tr>
+		<th>아이디</th>
+		<th>비밀번호</th>
+		<th>이메일</th>
+	</tr>
+	<tr>
+		<td>${user.id}</td>
+		<td>${user.password}</td>
+		<td>${user.email}</td>
+	</tr>
+</table>
+
+
 
 </body>
 </html>
