@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .container {
+  margin:auto:
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
@@ -17,19 +18,19 @@
 }
 
 @media (min-width: 600px) {
-  .c1 {
-    width: 40%;
+  .c1{
+    width: 45%;
   }
 
   .c4 {
-    width: 40%;
+    width: 45%;
   }
 
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 800px) {
   .container {
-    width: 1200px;
+    width: 95%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -51,9 +52,8 @@ function drawGeo() {
 	  var data = new google.visualization.DataTable(jsonData);
 	var options = {
 		backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },
-		colorAxis:  {minValue: 0, maxValue: 21,  
-			colors:['#000000','#ffffff',]},
-/* 			colors: ['#3182BD',
+		colorAxis:  {minValue: 0, maxValue: 100,  
+ 			colors: ['#3182BD',
 				'#ffffff',
 				'#000000',
 				'#3182BD',
@@ -74,7 +74,7 @@ function drawGeo() {
 				'#DEEBF7',
 				'#DEEBF7',
 				'#DEEBF7',
-				'#DEEBF7',]}, */
+				'#DEEBF7',]}, 
 		legend: 'none',	
 		backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },	
 		datalessRegionColor: '#f5f5f5',
@@ -107,7 +107,7 @@ function drawGeo() {
 	google.charts.setOnLoadCallback(drawChart);
 	
 	function drawChart() {  
-	  var urls= "${pageContext.request.contextPath}/onion/onionChart.do";
+	  var urls= "${pageContext.request.contextPath}/index/indexChart.do";
 	  var jsonData = $.ajax({
           url: urls,
           dataType: "json",
@@ -120,7 +120,7 @@ function drawGeo() {
 	    vAxis: {title: '생산량'},
 	    hAxis: {title: '연'},
 	    seriesType: 'bars',
-	    series: {2: {type: 'line'}}
+	    series: {3: {type: 'line'}}
 	  };
 	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 	  chart.draw(data, options);
@@ -137,7 +137,7 @@ function drawGeo() {
 		  var data = new google.visualization.DataTable(jsonData);
 		
 	       var options = {
-	    	          title: '전국분포'
+	    	          title: '양파 생산량 전국분포'
 	    	        };
 		  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 		  chart.draw(data, options);
@@ -154,8 +154,8 @@ function drawGeo() {
 
 <h1>전국 양파생산량과 면적 </h1>
 <div class='container'>
-<div class='c1' style="height:600px">
-<div  id='geo_div' ></div>
+<div class='c1'>
+<div class='geo_div' id='geo_div'  ></div>
 </div>
 <div class='c4'> 
 <div class='c2'  id="piechart" ></div>

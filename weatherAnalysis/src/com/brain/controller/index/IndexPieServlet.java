@@ -1,4 +1,4 @@
-package com.bran.controller.index;
+package com.brain.controller.index;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.brain.model.index.IndexService;
 import com.brain.model.onion.OnionService;
 import com.brain.model.onion.OnionVO;
 import com.google.gson.JsonArray;
@@ -28,8 +29,8 @@ public class IndexPieServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<OnionVO> list = null;
-		OnionService service = new OnionService();
-			 list = service.allRegionbyYear("2017");
+		IndexService service = new IndexService();
+			 list = service.selectAllRegionbyYear("2017");
 		System.out.println("onionChart");
 		System.out.println(list);
 		JsonObject data = new JsonObject();
