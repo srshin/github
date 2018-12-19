@@ -21,17 +21,23 @@ import com.brain.model.weather.WeatherVO;
   * @date 2018. 12. 14.
   *
   */
-@WebServlet("/weather/weatherResult.do")
+@WebServlet("/weather/weather2.do")
 public class WeatherResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		WeatherService service = new WeatherService();
 		
 		String oneName = request.getParameter("oneName");
-		String condition = request.getParameter("condition");
 		
+		String condition = request.getParameter("condition");
 		String conditionTitle = null;
 		if(condition.equals("average")) {
 			conditionTitle = "평균 기온";
@@ -45,7 +51,6 @@ public class WeatherResultServlet extends HttpServlet {
 			conditionTitle = "일조시간";
 		}
 		
-		System.out.println("weatherResult");
 		String[][] resultString = service.resultString(oneName, condition);
 		
 		request.setAttribute("resultString", resultString);
