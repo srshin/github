@@ -59,7 +59,7 @@ public class UpdateUser extends HttpServlet {
 			UserVO user = new UserVO(id, password, email);
 			int result = service.updateUser(user);
 			
-			request.setAttribute("message", result>0?"수정성공":"수정실패");
+			request.setAttribute("message", result>0?"성공적으로 수정되었습니다":"수정에 실패 하였습니다");
 			request.setAttribute("user", user);
 			request.getRequestDispatcher("result2.jsp").forward(request, response);
 		}	

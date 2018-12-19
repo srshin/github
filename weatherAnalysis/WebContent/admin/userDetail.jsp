@@ -5,16 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
 <title>Insert title here</title>
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"></jsp:include>
-<h1>회원 정보 수정</h1>
+<div id="search">
+<h2 class="admin">회원 정보 수정</h2>
 <form action="userUpdate.do" method="post">
-아이디 : <input type="text" name="id" readonly="readonly" value="${user.id }"><br>
-비밀번호 : <input type="password" name="password" value="${user.password }"><br>
-이메일 : <input type="email" name="email" value="${user.email }"><br>
-<input type="submit" value="수정하기" >
+<input style="border-color:rgba(217, 83, 78, 0.75);" class='ipt' type="text" name="id" readonly="readonly" value="${user.id }">
+<input class='ipt' type="password" name="password" value="${user.password }">
+<input class='ipt' type="email" name="email" value="${user.email }">
+
+<input type="submit" class='btn btn-default' value="수정하기" >
+
 </form>
+</div>
 </body>
 </html>

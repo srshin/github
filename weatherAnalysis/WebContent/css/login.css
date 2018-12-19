@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+body {
+font-family: Arial;
+background-color: #8A2BE2;
+
+}
+
+.login {
+margin: 20px auto;
+width: 380px;
+}
+.login-screen {
+margin-top: 100px;	
+background-color: #FFF;
+padding-left: 20px;
+padding-right: 20px;  
+padding-top : 30px;
+padding-bottom : 80px;
+border-radius: 5px
+}
+
+.app-title {
+text-align: center;
+color: #777;
+}
+
+.login-form {
+text-align: center;
+}
+
+.control-group {
+margin-bottom: 10px;
+  position: relative;
+  width: 90%;
+  margin: 15px auto;
+}
+
+input {
+
+text-align: center;
+background-color: #ECF0F1;
+border: 2px solid transparent;
+border-radius: 3px;
+font-size: 16px;
+font-weight: 200;
+padding: 10px 0;
+width: 300px;
+transition: border .5s;
+}
+
+input:focus {
+border: 2px solid #8A2BE2;
+box-shadow: none;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: #8A2BE2;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 25px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-shadow: none;
+  border-radius: 3px;
+  box-shadow: none;
+  transition: 0.25s;
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #9D2BE2;
+}
+
+span {
+    position: absolute;
+    display: block;
+    color: #777;
+    left: 20px;
+    top: 8px;
+    font-size: 22px;
+  }
+
+.mcontainer > .hcontainer > .h1 {
+	color : #fff;
+}  
+
+.mcontainer {
+margin: 20px auto;
+width: 800px;
+}
+
+.hcontainer {
+color : #fff;
+margin-top: 100px;	
+padding-left: 20px;
+padding-right: 20px;  
+padding-top : 30px;
+padding-bottom : 80px;
+}
