@@ -2,7 +2,6 @@ package com.brain.controller.weather;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,10 +31,10 @@ public class WeatherServlet extends HttpServlet {
 		List<WeatherVO> nameList = service.distinctOneName(); 
 		List<WeatherVO> allList = service.selectAll();
 		
+		System.out.println("Weather");
 		request.setAttribute("oneName", nameList); 
 		request.setAttribute("allList", allList); 
 
-		
 		request.getRequestDispatcher("/weather/weather.jsp").forward(request, response);
 
 	}
