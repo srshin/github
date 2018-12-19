@@ -45,13 +45,21 @@ public class SignupServlet extends HttpServlet {
 		int ret = service.insertUser(user);
 		request.setAttribute("newuser", user);
 		if(ret>0) {
-			request.setAttribute("message", "가입을 환영합니다.");
+			request.setAttribute("message1", "가입성공");
+			request.setAttribute("message2", "가입을 환영합니다");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
+			rd.forward(request, response);
 			
 		}else {
-			request.setAttribute("message", "가입실패");
+			
+			request.setAttribute("message1", "가입실패");
+			request.setAttribute("message2", "아이디가 중복되었습니다");
+			
+			RequestDispatcher rd = request.getRequestDispatcher("result3.jsp");
+			rd.forward(request, response);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
-		rd.forward(request, response);
+		
 		
 		
 	}

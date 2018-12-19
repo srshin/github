@@ -1,27 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
 <body>
 
 <jsp:include page="/header.jsp"></jsp:include>
-<div class="container">
-	<div class="login-form">
-		<h1> 로그인 페이지 </h1>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<div class="login">
+	<div class="login-screen">
+		<div class="app-title">
+		<h1> 로그인 </h1>
+		</div>
+		<div class="login-form">
 		<form action="login.do" method="post">
-			<label for="id">아이디</label>
-			<input type="text" name="id" id="id" required="required"><br>
-			
-			<label for="password">비밀번호</label>
-			<input type="password" name="password" id="password" required="required"><br>
-			<input type="submit" value="로그인">
+			<div class="control-group">
+			<input type="text" name="id" id="id" placeholder="아이디" required="required">
+			<span><i class="fas fa-user"></i></span>
+			</div>
+			<div class="control-group">
+			<input type="password" name="password" id="password" placeholder="비밀번호" required="required">
+			<span><i class="fas fa-unlock-alt"></i></span>
+			</div>
+			<input type="submit" value="로그인" class="btn">
 		</form>
 	</div>
+</div>
 </div>
 </body>
 </html>

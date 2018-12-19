@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 			if(user==null) {
 				// 인증실패
 				request.setAttribute("loginResult", "no");
-				request.setAttribute("message", "로그인실패");
+				request.setAttribute("message", "아이디 또는 비밀번호 오류");
 		
 				RequestDispatcher rd = request.getRequestDispatcher("result2.jsp");
 				rd.forward(request, response);
@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
 				// user 인증 성공
 				request.setAttribute("loginResult", "user");
 				request.setAttribute("message", "유저 로그인성공");
+				session.setMaxInactiveInterval(24*60*60);
 		
 				session.setAttribute("user", user);
 				response.sendRedirect("../index.jsp");
@@ -86,6 +87,7 @@ public class LoginServlet extends HttpServlet {
 			// admin 인증 성공
 				request.setAttribute("loginResult", "admin");
 				request.setAttribute("message", "어드민 로그인성공");
+				session.setMaxInactiveInterval(24*60*60);
 		
 				session.setAttribute("admin", admin);
 				response.sendRedirect("../admin/user.do");

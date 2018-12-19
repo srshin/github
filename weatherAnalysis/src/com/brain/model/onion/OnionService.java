@@ -24,6 +24,10 @@ public class OnionService {
 	public List<String> allRegion() {
 		return dao.allRegion();
 	}
+	
+	public List<String> top5Region() {
+		return dao.top5Region();
+	}
 
 	public List<String> allYear() {
 		return dao.allYear();
@@ -40,6 +44,7 @@ public class OnionService {
 	public List<OnionVO> unitOutput() {
 		return dao.unitOutput();
 	}
+
 
 }
 

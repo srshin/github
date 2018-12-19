@@ -5,29 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+<body>
 <jsp:include page="/header.jsp"></jsp:include>
-<div class="signup">
-	<div class="signup-screen">
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<div class="login">
+	<div class="login-screen">
 		<div class="app-title">
-			<h1> Signup </h1>
-			<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+			<h1> 가입 </h1>
 		</div>
-		<div class="signup-from">
+		<div class="login-form">
 			<form action="signup.do" method="post">
 				<div class="control-group">
-					<label for="id">아이디</label>
-					<input type="text" name="id" id="id" required="required">
+					<input type="text" name="id" id="id" placeholder="아이디" required="required">
+					<span><i class="fas fa-user"></i></span>
 				</div>
 				<div class="control-group">
-					<label for="password">비밀번호</label>
-					<input type="password" name="password" id="password" required="required">
+					<input type="password" name="password" id="password" placeholder="패스워드" required="required">
+					<span><i class="fas fa-unlock-alt"></i></span>
 				</div>
 				<div class="control-group">
-					<label for="email">이메일</label>
-					<input type="email" name="email" id="email" required="required">
-					<input type="submit" value="가입하기">
+					<input type="email" name="email" id="email" placeholder="이메일" required="required">
+					<span><i class="far fa-envelope"></i></span>
 				</div>
+				<input type="submit" value="가입" class="btn">
 			</form>
 		</div>
 	</div>
