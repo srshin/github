@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.brain.model.index.IndexService;
+import com.brain.model.index.IndexVO;
 import com.brain.model.onion.OnionService;
 import com.brain.model.onion.OnionVO;
 import com.google.gson.JsonArray;
@@ -24,21 +25,26 @@ import com.google.gson.JsonObject;
  */
 
 
-@WebServlet("/index/indexPie.do")
-public class IndexPieServlet extends HttpServlet {
+@WebServlet("/index/indexChart.do")
+public class IndexChartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<OnionVO> list = null;
+		List<IndexVO> list = null;
+		String selectedRegion = request.getParameter("region");
 		IndexService service = new IndexService();
-			 list = service.selectAllRegionbyYear("2017");
+		list = service.selectAll();
 		System.out.println("onionChart");
 		System.out.println(list);
 		JsonObject data = new JsonObject();
 		JsonArray arryCols = new JsonArray();
 		JsonArray arrayRows = new JsonArray();
- 		String[][] colvals = {{ "string", "지역"}, 
+ 		String[][] colvals = {{ "string", "연도"}, 
 				{ "number", "생산량"},
+				{ "number", "면적"},
+				{ "number", "단위생산량"},
+				{ "number", "가격"},
+				
 		};
 		for (String[] s: colvals) {
 			JsonObject col = new JsonObject();
@@ -46,17 +52,24 @@ public class IndexPieServlet extends HttpServlet {
 			col.addProperty("label", s[1]);
 			arryCols.add(col);
 		}		
-		for (OnionVO vo : list) {
+		for (IndexVO vo : list) {
 			JsonArray ajaxArryRowsC = new JsonArray();
 			JsonObject cell = new JsonObject();
 				JsonObject ajaxObjRow1 = new JsonObject(); 
-				ajaxObjRow1.addProperty("v", vo.getRegion());
-				ajaxArryRowsC.add(ajaxObjRow1);
-				
 				JsonObject ajaxObjRow2 = new JsonObject(); 
-				ajaxObjRow2.addProperty("v", vo.getOutput());
+				JsonObject ajaxObjRow3 = new JsonObject(); 
+				JsonObject ajaxObjRow4 = new JsonObject(); 
+				JsonObject ajaxObjRow5 = new JsonObject(); 
+				ajaxObjRow1.addProperty("v", vo.getYear());
+				ajaxArryRowsC.add(ajaxObjRow1);
+				ajaxObjRow2.addProperty("v", vo.getOutput()/100);
 				ajaxArryRowsC.add(ajaxObjRow2);
-				
+				ajaxObjRow3.addProperty("v", vo.getArea());
+				ajaxArryRowsC.add(ajaxObjRow3);
+				ajaxObjRow4.addProperty("v", vo.getUnitOutput());
+				ajaxArryRowsC.add(ajaxObjRow4);
+				ajaxObjRow5.addProperty("v", vo.getPrice());
+				ajaxArryRowsC.add(ajaxObjRow5);
 				cell.add("c", ajaxArryRowsC);
 				arrayRows.add(cell);
 		}
