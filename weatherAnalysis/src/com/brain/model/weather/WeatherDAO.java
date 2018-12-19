@@ -98,12 +98,12 @@ public class WeatherDAO {
 		sql1 += condition;
 		
 		String sql = sql1 + sql2;
-		System.out.println(sql);
+		//System.out.println(sql);
 		
 		conn = OracleDBUtil.dbConnect();
 		try {
 			st = conn.prepareStatement(sql);
-			System.out.println("지역명:"+ oneName);
+			//System.out.println("지역명:"+ oneName);
 			st.setString(1, oneName);
 
 			rs = st.executeQuery();
@@ -113,7 +113,6 @@ public class WeatherDAO {
 			double taMin = 0;
 			double rnDay = 0;
 			double sunLight = 0;
-			int unitOutput= 0;
 
 			while (rs.next()) {
 				
@@ -139,7 +138,6 @@ public class WeatherDAO {
 		} finally {
 			OracleDBUtil.dbDisconnect(rs, st, conn);
 		}
-		System.out.println(resultList);
 		return resultList;
 	}
 
