@@ -14,7 +14,7 @@ function go() {
 	if( user_id =="null") {
 		alert("해당 서비스는 로그인 후 이용 가능합니다.");
 	}else {
-		window.location.href = '/BrainMining/predict/predict.do';
+		window.location.href ='${pageContext.request.contextPath }/predict/predict.do';
 	}
 	
 	
