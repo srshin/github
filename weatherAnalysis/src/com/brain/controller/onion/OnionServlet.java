@@ -31,22 +31,6 @@ public class OnionServlet extends HttpServlet {
 		request.setAttribute("region", service.allRegion());
 		request.setAttribute("annualTotal", service.annualTotal());
 		
-		
-		List<OnionVO> annualTotal = service.annualTotal();
-		String result = "['연도', '생산량(톤)', '재배면적(ha)',   '10a당 생산량(kg)'],";
-		for (OnionVO vo : annualTotal) {
-			String str = vo.getRegion();
-				result +="[";	
-				result += "'" +vo.getYear()+ "'," ;
-				result += String.valueOf(vo.getOutput())+"," ; 
-				result += String.valueOf(vo.getArea())+ ",";
-				result += String.valueOf(vo.getUnitOutput())+"],";
-		}
-		String result2= result.substring(0, result.length()-1);
-		System.out.println(result2);
-		request.setAttribute("result", result2);
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/onion/onion.jsp");
 		rd.forward(request, response);
 		

@@ -31,7 +31,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawVisualization);
+	google.charts.setOnLoadCallback(drawVisualization); //첫 로딩시 불리는 chart 
 	
 	function drawVisualization() {  
 	  var urls= "${pageContext.request.contextPath}/onion/onionChart.do";
@@ -62,9 +62,9 @@
 <c:set var="path" value="${pageContext.request.contextPath }/onion"></c:set>
 <ul class="subul">
   <li class="subli" ><a class="active" href="${path }/onion.do">연도별·지역별 생산규모</a></li>
-  <li class="subli"><a  href="${path }/output.do">연도별·지역간 생산량 변화 추이</a></li>
-  <li class="subli"><a  href="${path }/area.do">연도별·지역간 재배면적 변화 추이</a></li>
-  <li class="subli"><a  href="${path }/unitOutput.do">연도별·지역간 생산성 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/output.do">Top5 지역 생산량 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/area.do">Top5 지역 재배면적 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/unitOutput.do">Top5 지역 생산성 변화 추이</a></li>
 </ul>
 
 <h1> 연도별·지역별 양파 총 생산량 </h1>
@@ -81,11 +81,11 @@
 <div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 <div id="here">
-<table border="1">
+<table id='customers'>
   <tr>
-    <td>연도</td>
+    <th>연도</th>
       <c:forEach items="${annualTotal}" var="annualTotal">
-        <td>${annualTotal.year}</td>
+        <th>${annualTotal.year}</th>
       </c:forEach>
   </tr>
   <tr>

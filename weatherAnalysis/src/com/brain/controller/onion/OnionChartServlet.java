@@ -44,6 +44,11 @@ public class OnionChartServlet extends HttpServlet {
 				{ "number", "생산량"},
 				{ "number", "면적"},
 				{ "number", "단위생산량"},
+				
+				/*label 순서변경 감안 로직	
+				{ "number", "생산량"},
+				{ "number", "단위생산량"},
+				{ "number", "면적"},*/
 		};
 		for (String[] s: colvals) {
 			JsonObject col = new JsonObject();
@@ -67,6 +72,17 @@ public class OnionChartServlet extends HttpServlet {
 				ajaxObjRow4.addProperty("v", vo.getUnitOutput());
 				ajaxArryRowsC.add(ajaxObjRow4);
 				cell.add("c", ajaxArryRowsC);
+
+				/*label 순서변경 감안 로직				
+				ajaxObjRow1.addProperty("v", vo.getYear());
+				ajaxArryRowsC.add(ajaxObjRow1);
+				ajaxObjRow2.addProperty("v", vo.getOutput());
+				ajaxArryRowsC.add(ajaxObjRow2);
+				ajaxObjRow3.addProperty("v", vo.getUnitOutput());
+				ajaxArryRowsC.add(ajaxObjRow3);
+				ajaxObjRow4.addProperty("v", vo.getArea());
+				ajaxArryRowsC.add(ajaxObjRow4);*/
+				
 				arrayRows.add(cell);
 		}
 		data.add("cols", arryCols);

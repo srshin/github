@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import com.brain.util.OracleDBUtil;
 
-
-
 /**
  * @brief 기상 관측 자료 도출 DAO
  * @details
@@ -113,7 +111,6 @@ public class WeatherDAO {
 			double taMin = 0;
 			double rnDay = 0;
 			double sunLight = 0;
-			int unitOutput= 0;
 
 			while (rs.next()) {
 				

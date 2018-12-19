@@ -1,7 +1,6 @@
 package com.brain.model.onion;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -117,10 +116,39 @@ public class OnionDAO {
 				} finally {
 					OracleDBUtil.dbDisconnect(rs, st, conn);
 				}
-				System.out.println(regionList);
+//				System.out.println(regionList);
 				return regionList;		
 			}
 
+			
+// 생산성 top 5 지역명
+			public List<String> top5Region() {
+				
+				Connection conn = null;
+				Statement st = null;
+				ResultSet rs = null;
+				String sql = "select region from regionTable where region = '전라남도'or region ='경상남도'or region ='경상북도'or region ='전라북도'or region ='제주도' order by region";
+				String region = null;
+				List<String> regionList = new ArrayList<>();
+				
+				conn = OracleDBUtil.dbConnect();
+				
+				try {
+					st = conn.createStatement();
+					rs = st.executeQuery(sql);
+					while(rs.next()) {
+						region = rs.getString("region");
+						regionList.add(region);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} finally {
+					OracleDBUtil.dbDisconnect(rs, st, conn);
+				}
+//				System.out.println(regionList);
+				return regionList;		
+			}			
 			
 		//연도 리스트
 			public List<String> allYear() {
@@ -147,12 +175,12 @@ public class OnionDAO {
 				} finally {
 					OracleDBUtil.dbDisconnect(rs, st, conn);
 				}
-				System.out.println(yearList);
+//				System.out.println(yearList);
 				return yearList;		
 			}
 			
 			
-	// 연간별,지역별 총생산량 추출	
+// 연간별,지역별 총생산량 추출	
 			public List<OnionVO> output() {
 				
 				Connection conn = null;
@@ -176,7 +204,7 @@ public class OnionDAO {
 						output.setYear(rs.getString("year"));
 						output.setOutput(rs.getInt("output"));
 						
-						System.out.println(output);
+//						System.out.println(output);
 						outputList.add(output);
 					}
 				} catch (SQLException e) {
@@ -186,18 +214,18 @@ public class OnionDAO {
 					OracleDBUtil.dbDisconnect(rs, st, conn);
 				}
 
-				System.out.println(outputList);
+//				System.out.println(outputList);
 				return outputList;		
 			}	
 			
 			
-	// 연간별,지역별 재배면적 추출	
+// 연간별,지역별 총재배면적 추출	
 					public List<OnionVO> area() {
 						
 						Connection conn = null;
 						Statement st = null;
 						ResultSet rs = null;
-						String sql = "select region, year, area from regionTable join onionTable using(region) order by id, year ";
+						String sql = "select region, year, area from regionTable join onionTable using(region) order by id, year";
 						OnionVO area  = null;
 						List<OnionVO> areaList = new ArrayList<>();
 						
@@ -215,7 +243,7 @@ public class OnionDAO {
 								area.setYear(rs.getString("year"));
 								area.setArea(rs.getInt("area"));
 								
-								System.out.println(area);
+//								System.out.println(area);
 								areaList.add(area);
 							}
 						} catch (SQLException e) {
@@ -224,8 +252,7 @@ public class OnionDAO {
 						} finally {
 							OracleDBUtil.dbDisconnect(rs, st, conn);
 						}
-
-						System.out.println(areaList);
+//						System.out.println(areaList);
 						return areaList;		
 					}		
 					
@@ -254,7 +281,7 @@ public class OnionDAO {
 								unitOutput.setYear(rs.getString("year"));
 								unitOutput.setUnitOutput(rs.getInt("unitOutput"));
 								
-								System.out.println(unitOutput);
+//								System.out.println(unitOutput);
 								unitOutputList.add(unitOutput);
 							}
 						} catch (SQLException e) {
@@ -263,10 +290,10 @@ public class OnionDAO {
 						} finally {
 							OracleDBUtil.dbDisconnect(rs, st, conn);
 						}
-
-						System.out.println(unitOutputList);
+//						System.out.println(unitOutputList);
 						return unitOutputList;		
 					}				
  
+
 }
 

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+/* manageUser #2194E0 */
+
+#search {
+	padding-left: 10%;
+	padding-top : 1%;
+	padding-bottom : 1%;
+	
+}
+
+
+.btn {
+  margin-left: 5px;
+  margin-right: 5px;
+  
+}
+
+.btn-default {
+  
+  font-size: 17px;
+  color: rgba(108, 88, 179, 0.75);
+  letter-spacing: 3px;
+  border: 1.1px solid rgba(108, 89, 179, 0.75);
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  padding: 6px 23px;
+}
+
+.btn-default:hover {
+  color: #FFF;
+  background: rgba(108, 88, 179, 0.75);
+  border: 1.1px solid rgba(108, 89, 179, 0.75);
+}
+
+.btn-primary {
+
+  font-size: 17px;
+  color: rgba(58, 133, 191, 0.75);
+  letter-spacing: 3px;
+  border: 1.1px solid rgba(58, 133, 191, 0.75);
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  padding: 6px 23px;
+}
+
+.btn-primary:hover {
+  color: #FFF;
+  background: rgba(58, 133, 191, 0.75);
+  border: 1.1px solid rgba(58, 133, 191, 0.75);
+}
+
+.btn-danger {
+
+  font-size: 17px;
+  color: rgba(217, 83, 78, 0.75);
+  letter-spacing: 3px;
+  border: 1.1px solid rgba(217, 83, 78, 0.75);
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  padding: 6px 23px;
+}
+
+.btn-danger:hover {
+  color: #FFF;
+  background: rgba(217, 83, 78, 0.75);
+  border: 1.1px solid rgba(217, 83, 78, 0.75);
+}
+
+.ipt {
+	font-size: 17px;
+	padding: 8px 23px;
+	border: 1.1px solid rgba(58, 133, 191, 0.75);
+	border-radius: 10px;
+	color : rgba(108, 89, 179, 0.75)
+	
+	
+}
+
+::-webkit-input-placeholder { /* Chrome */
+  color: rgba(58, 133, 191, 0.75);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: rgba(58, 133, 191, 0.75);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(58, 133, 191, 0.75);
+  opacity: 1;
+}
+:-moz-placeholder { /* Firefox 4 - 18 */
+  color: rgba(58, 133, 191, 0.75);
+  opacity: 1;
+}
+
+.admin {
+	color : rgba(58, 133, 191, 0.75);
+}
+
+a {
+	text-decoration : none;
+}
+
+hr {
+	color : rgba(58, 133, 191, 0.75);
+	width : 80%;
+	margin : auto;
+}
