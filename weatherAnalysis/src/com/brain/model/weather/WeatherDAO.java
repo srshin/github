@@ -88,11 +88,11 @@ public class WeatherDAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
-
-		String sql1 = " select w.oneName , substr(w.taDate,1,4) year ,substr(w.taDate,6,2) month, o.unitOutput, " ;
-		String sql2 = " from weathertable3 w join oniontable o on w.onename = o.region where w.onename = o.region and substr(w.tadate,1,4)= o.year "
-					+ " and oneName = ? ";
 		
+		String sql1 = " select w.oneName, substr(w.taDate,1,4) year, substr(w.taDate,6,2) month, o.unitoutput, " ;
+		String sql2 = " from weathertable3 w full outer join oniontable o on w.oneName = o.region and substr(w.taDate,1,4)=o.year  "
+					+ " where w.onename = ? order by 1";
+					
 		sql1 += condition;
 		
 		String sql = sql1 + sql2;
@@ -136,7 +136,7 @@ public class WeatherDAO {
 		} finally {
 			OracleDBUtil.dbDisconnect(rs, st, conn);
 		}
-		System.out.println(resultList);
+		//System.out.println("resultList:"+ resultList);
 		return resultList;
 	}
 

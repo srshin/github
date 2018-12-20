@@ -27,26 +27,25 @@ public class WeatherChartServlet extends HttpServlet {
       
         String[][] resultString = service.resultString(oneName, condition);
         
+        
         JsonObject data = new JsonObject();
         JsonArray arrayCols = new JsonArray();
         JsonArray arrayRows = new JsonArray();
-       
-        //String colType="number";
        
             JsonObject col = new JsonObject();
             col.addProperty("type", "string");
             col.addProperty("label", "월");
             arrayCols.add(col);
             
-            for (int i = 1; i < 5; i++) {
+            //column
+            for (int i = 1; i < 11; i++) {
                 JsonObject cols = new JsonObject();
                 cols.addProperty("type", "number");
                 cols.addProperty("label", resultString[i][0]);
-                arrayCols.add(cols);
+                arrayCols.add(cols);  
             }
-        
-            
-        for(int j=2  ; j<13; j++) {
+                       
+        for(int j=2 ; j<13; j++) {
 			JsonArray ajaxArryRowsC = new JsonArray();
 			JsonObject cell = new JsonObject();
 				JsonObject ajaxObjRow1 = new JsonObject(); 
@@ -54,6 +53,13 @@ public class WeatherChartServlet extends HttpServlet {
 				JsonObject ajaxObjRow3 = new JsonObject(); 
 				JsonObject ajaxObjRow4 = new JsonObject(); 
 				JsonObject ajaxObjRow5 = new JsonObject(); 
+				JsonObject ajaxObjRow6 = new JsonObject(); 
+				JsonObject ajaxObjRow7 = new JsonObject(); 
+				JsonObject ajaxObjRow8 = new JsonObject(); 
+				JsonObject ajaxObjRow9 = new JsonObject(); 
+				JsonObject ajaxObjRow10 = new JsonObject(); 
+				JsonObject ajaxObjRow11 = new JsonObject(); 
+				
 				ajaxObjRow1.addProperty("v", resultString[0][j]);
 				ajaxArryRowsC.add(ajaxObjRow1);
 				ajaxObjRow2.addProperty("v", resultString[1][j]);
@@ -63,10 +69,24 @@ public class WeatherChartServlet extends HttpServlet {
 				ajaxObjRow4.addProperty("v", resultString[3][j]);
 				ajaxArryRowsC.add(ajaxObjRow4);
 				ajaxObjRow5.addProperty("v", resultString[4][j]);
-				ajaxArryRowsC.add(ajaxObjRow5);
+				ajaxArryRowsC.add(ajaxObjRow5);		
+				ajaxObjRow6.addProperty("v", resultString[5][j]);
+				ajaxArryRowsC.add(ajaxObjRow6);		
+				ajaxObjRow7.addProperty("v", resultString[6][j]);
+				ajaxArryRowsC.add(ajaxObjRow7);	
+				ajaxObjRow8.addProperty("v", resultString[7][j]);
+				ajaxArryRowsC.add(ajaxObjRow8);	
+				ajaxObjRow9.addProperty("v", resultString[8][j]);
+				ajaxArryRowsC.add(ajaxObjRow9);	
+				ajaxObjRow10.addProperty("v", resultString[9][j]);
+				ajaxArryRowsC.add(ajaxObjRow10);
+				ajaxObjRow11.addProperty("v", resultString[10][j]);
+				ajaxArryRowsC.add(ajaxObjRow11);	
+				
 				cell.add("c", ajaxArryRowsC);
-				arrayRows.add(cell);
-        }
+				arrayRows.add(cell);	
+				
+        } 
         
         data.add("cols", arrayCols);
         data.add("rows", arrayRows);

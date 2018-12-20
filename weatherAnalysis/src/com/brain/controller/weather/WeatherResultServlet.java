@@ -11,7 +11,7 @@ import com.brain.model.weather.WeatherService;
 
 
 /**
-  * @brief 기상 관측 자료 도출 Servlet2
+  * @brief 기상 관측 자료 도출 Result Servlet
   * @details
   * @author "HayeonBaek"
   * @date 2018. 12. 14.
@@ -34,7 +34,7 @@ public class WeatherResultServlet extends HttpServlet {
 		} else if (condition.equals("taMax")) {
 			conditionTitle = "평균 최고기온";
 		} else if (condition.equals("taMin")) {
-			conditionTitle = "평균최저기온";
+			conditionTitle = "평균 최저기온";
 		} else if (condition.equals("rnDay")) {
 			conditionTitle = "강수량";
 		} else if (condition.equals("sunLight")) {

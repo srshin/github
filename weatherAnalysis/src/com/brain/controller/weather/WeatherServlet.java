@@ -29,12 +29,10 @@ public class WeatherServlet extends HttpServlet {
 		WeatherService service = new WeatherService();
 		
 		List<WeatherVO> nameList = service.distinctOneName(); 
-		List<WeatherVO> allList = service.selectAll();
 		
 		System.out.println("Weather");
 		request.setAttribute("oneName", nameList); 
-		request.setAttribute("allList", allList); 
-
+	
 		request.getRequestDispatcher("/weather/weather.jsp").forward(request, response);
 
 	}
