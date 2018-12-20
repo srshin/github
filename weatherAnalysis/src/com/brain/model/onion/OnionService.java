@@ -44,6 +44,10 @@ public class OnionService {
 	public List<OnionVO> unitOutput() {
 		return dao.unitOutput();
 	}
+	
+	public List<String> statesRegion() {
+		return dao.statesRegion();
+	}
 
 }
 

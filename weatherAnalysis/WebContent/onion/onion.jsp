@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>        
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,30 +11,14 @@
 
 <title>Brain Mining_양파 생산량 분석</title>
 
-<script>
-  function retrieve() {
-	  
-	var region = document.getElementById("region").value;
-	var param = "region=" + region;
-//	alert(param);
-	
-	var xhttp = new XMLHttpRequest();
-	 xhttp.onreadystatechange = function() {
-	   if (this.readyState == 4 && this.status == 200) {
-	     document.getElementById("here").innerHTML = this.responseText;
-	   }
-	 };
-	 xhttp.open("GET", "/onion/onionByRegion.do?"+ param);
-	 xhttp.send();
-}
-</script>    
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
+<script type="text/javascript">
+	google.charts.load('current', {'packages':['table']});
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawVisualization); //첫 로딩시 불리는 chart 
 	
 	function drawVisualization() {  
-	  var urls= "${pageContext.request.contextPath}/onion/onionChart.do";
+	  var urls= "${pageContext.request.contextPath}/onion/onionByRegionCharts.do";
 	  var region = document.getElementById("region").value;
 	  var param = "?region=" + region;
 	  var jsonData = $.ajax({
@@ -43,16 +27,35 @@
           async: false
           }).responseText;
 	  var data = new google.visualization.DataTable(jsonData);
-	
-	  var options = {
-	    title : '양파 생산량',
-	    vAxis: {title: '생산량'},
-	    hAxis: {title: '연'},
-	    seriesType: 'bars',
-	    series: {2: {type: 'line'}}
-	  };
+ 	  var options = {
+		title : region + ' 생산규모 변화추이',
+        vAxes: {
+				0: {
+					title: '생산량',				
+					},
+				1: {
+					title: '재배면적',				
+					},
+			},
+   		series: {
+				0:{
+					targetAxisIndex:0
+					},
+				1:{
+					targetAxisIndex:1
+				},
+				2:{
+					targetAxisIndex:1,
+					lineDashStyle: [5, 1, 3],
+					lineWidth: 4
+				},
+    		},
+       };
 	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 	  chart.draw(data, options);
+	  
+	  var table = new google.visualization.Table(document.getElementById('table_div'));
+	  table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
  	}
 </script>
 </head>
@@ -67,45 +70,19 @@
   <li class="subli"><a  href="${path }/unitOutput.do">Top5 지역 생산성 변화 추이</a></li> --%>
 </ul>
 
-<h1> 연도별·지역별 양파 총 생산량 </h1>
+<h1> 각 지역별 양파 생산규모 변화추이 </h1>
 지역 : 
 <select name="region" id="region">
   <c:forEach var="region" items="${region}">
 	<option>${region}</option>	
   </c:forEach>
 </select>  
-<button  onclick="retrieve();drawVisualization();">조회</button>
+<button  onclick="drawVisualization();">조회</button>
 <br><br>
 
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
-
-<div id="here">
-<table id='customers'>
-  <tr>
-    <th>연도</th>
-      <c:forEach items="${annualTotal}" var="annualTotal">
-        <th>${annualTotal.year}</th>
-      </c:forEach>
-  </tr>
-  <tr>
-    <td>생산량(톤)</td>
-      <c:forEach items="${annualTotal}" var="annualTotal">
-        <td><fmt:formatNumber>${annualTotal.output}</fmt:formatNumber></td>
-      </c:forEach>    
-  </tr>
-  <tr>
-    <td>재배면적 (ha)</td>
-      <c:forEach items="${annualTotal}" var="annualTotal">
-        <td><fmt:formatNumber>${annualTotal.area}</fmt:formatNumber></td>
-      </c:forEach>     
-  </tr>
-  <tr>
-    <td>10a당 생산량 (kg)</td>
-      <c:forEach items="${annualTotal}" var="annualTotal">
-        <td><fmt:formatNumber>${annualTotal.unitOutput}</fmt:formatNumber></td>
-      </c:forEach>     
-  </tr>      
-</table>
-</div>
+<div id="chart_div" style="width: 1100px; height: 500px;"></div>
+<br>
+<div id="table_div" style="width: 1100px; height: 500px;"></div>
+<br>
 </body>
 </html>

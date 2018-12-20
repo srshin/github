@@ -22,8 +22,8 @@ import com.google.gson.JsonObject;
 * @author "JungeunPark"
 * @date 2018. 12. 18.
 */
-@WebServlet("/onion/onionByCondition.do")
-public class OnionByConditionServlet extends HttpServlet {
+@WebServlet("/onion/onionByConditioncharts.do")
+public class OnionByConditionChartsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

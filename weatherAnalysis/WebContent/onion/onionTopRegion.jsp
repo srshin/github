@@ -14,12 +14,11 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	google.charts.load('current', {'packages':['table']});
-	google.charts.load('current', {'packages':['line']});
-	
+	google.charts.load('current', {'packages':['line']});	
 	google.charts.setOnLoadCallback(drawVisualization); //첫 로딩시 불리는 chart 
 		
 	function drawVisualization() {  
-	  var urls = "${pageContext.request.contextPath}/onion/onionByCondition.do";
+	  var urls = "${pageContext.request.contextPath}/onion/onionByConditioncharts.do";
 	  var condition = document.getElementById("condition").value;
 	  var param = "?condition=" + condition;
 	  var jsonData = $.ajax({
@@ -27,17 +26,18 @@
           dataType: "json",
           async: false
           }).responseText;
-	  console.log(jsonData);
+//	  console.log(jsonData);
 	  var data = new google.visualization.DataTable(jsonData);
 /*     alert(data.wg[0]);
 	   console.log(data);   */
-	  var options = {
-	    title : '연도별·지역별  총 양파'+ condition +'변화 추이',
+	   
+	   var options = {
+	    title : ' 연도별·지역별  양파 '+ condition +' 변화 추이 ',
 	    vAxis: {title: condition },
 	    hAxis: {title: '연도'},
 	  };
 	  var chart = new google.charts.Line(document.getElementById('chart_div'));
-	  chart.draw(data, options);
+	  chart.draw(data, google.charts.Line.convertOptions(options));
 	  
 //find to convert row ro column	  	
 
@@ -69,22 +69,6 @@
 <br>
 <div id="table_div" style="width: 1100px; height: 500px;"></div>
 <br>
-<%-- <table id='customers'>
-<tr>
-  <td></td>
-    <c:forEach items="${yearList}" var="yearList">
-  	  <th>${yearList}</th>
-  	</c:forEach>
-</tr>
-<c:forEach items="${regionList}" var="regionList">
- <tr>
-   <td>${regionList}</td>
-    <c:forEach items="${outputList}" var="outputList">	
-     <c:if test="${regionList==outputList.region}"><td><fmt:formatNumber>${outputList.output}</fmt:formatNumber></td></c:if>
-   </c:forEach>
- </tr>
-</c:forEach>
-</table> --%>
 <br><Br>
 </body>
 </html>

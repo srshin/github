@@ -92,7 +92,7 @@ public class OnionDAO {
 		}
 		
 		
-		// 지역명 리스트
+// 전체 지역명 리스트
 			public List<String> allRegion() {
 				
 				Connection conn = null;
@@ -121,6 +121,36 @@ public class OnionDAO {
 				return regionList;		
 			}
 
+
+// 도단위 지역명 리스트
+					public List<String> statesRegion() {
+						
+						Connection conn = null;
+						Statement st = null;
+						ResultSet rs = null;
+						String sql = " select region from onionTable where year='2017' and (region like '%도%' or region = '전국') order by output desc ";
+						String region = null;
+						List<String> regionList = new ArrayList<>();
+						
+						conn = OracleDBUtil.dbConnect();
+						
+						try {
+							st = conn.createStatement();
+							rs = st.executeQuery(sql);
+							while(rs.next()) {
+								region = rs.getString("region");
+								regionList.add(region);
+							}
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} finally {
+							OracleDBUtil.dbDisconnect(rs, st, conn);
+						}
+//							System.out.println(regionList);
+						return regionList;		
+					}			
+			
 			
 // 생산성 top 5 지역명
 			public List<String> top5Region() {

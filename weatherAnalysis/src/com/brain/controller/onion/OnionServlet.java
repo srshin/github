@@ -28,7 +28,7 @@ public class OnionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		OnionService service = new OnionService();
-		request.setAttribute("region", service.allRegion());
+		request.setAttribute("region", service.statesRegion());
 		request.setAttribute("annualTotal", service.annualTotal());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/onion/onion.jsp");
