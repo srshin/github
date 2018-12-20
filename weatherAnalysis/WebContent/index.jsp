@@ -6,35 +6,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .container {
-  margin:auto:
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
 }
 
-.c1, .c2, .c3, .c4 {
+.c1, .c2, .c3 {
   width: 100%;
 }
 
-@media (min-width: 600px) {
-  .c1{
-    width: 45%;
+@media (min-width: 1000px) {
+  .c1 {
+    width: 60%;
+    -webkit-order: 2;
+    order: 1;
+  }
+    .c2 {
+    width: 40%;
+    -webkit-order: 1;
+    order: 2;
   }
 
-  .c4 {
-    width: 45%;
+  .c3 {
+    width: 100%;
+    -webkit-order: 3;
+    order: 3;
   }
 
+
+  
 }
 
-@media (min-width: 800px) {
-  .container {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}</style>
+
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type='text/javascript' src='http://www.google.com/jsapi'></script>
 <script type='text/javascript'>
@@ -52,9 +55,9 @@ function drawGeo() {
 	  var data = new google.visualization.DataTable(jsonData);
 	var options = {
 		backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },
-		colorAxis:  {minValue: 0, maxValue: 100,  
- 			colors: ['#3182BD',
-				'#ffffff',
+		colorAxis:  {minValue: 0, maxValue: 50,  
+ 			colors: ['#ffffff','#ff0000'],
+/*				'#dddddd',
 				'#000000',
 				'#3182BD',
 				'#dddddd',
@@ -64,17 +67,18 @@ function drawGeo() {
 				'#3182BD',
 				'#9ECAE1',
 				'#9ECAE1',
+				'#111111',
 				'#9ECAE1',
 				'#9ECAE1',
 				'#9ECAE1',
 				'#9ECAE1',
-				'#9ECAE1',
-				'#9ECAE1',
+				'#ffffff',
 				'#DEEBF7',
 				'#DEEBF7',
 				'#DEEBF7',
 				'#DEEBF7',
-				'#DEEBF7',]}, 
+				'#DEEBF7',]
+*/		}, 
 		legend: 'none',	
 		backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },	
 		datalessRegionColor: '#f5f5f5',
@@ -84,6 +88,7 @@ function drawGeo() {
 		sizeAxis: {minValue: 1, maxValue:1,minSize:10,  maxSize: 10},
 		region:'KR', //country code
 		keepAspectRatio: true,
+		chartArea: {left:20,top:0,width:'50%',height:'75%'},
 		tooltip: {textStyle: {color: '#444444'}, trigger:'focus'}	
 	};
 	
@@ -121,6 +126,7 @@ function drawGeo() {
 	    hAxis: {title: '연'},
 	    seriesType: 'bars',
 	    series: {3: {type: 'line'}}
+
 	  };
 	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 	  chart.draw(data, options);
@@ -137,7 +143,7 @@ function drawGeo() {
 		  var data = new google.visualization.DataTable(jsonData);
 		
 	       var options = {
-	    	          title: '양파 생산량 전국분포'
+	    	          title: '양파 생산량 전국분포',
 	    	        };
 		  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 		  chart.draw(data, options);
@@ -150,16 +156,19 @@ function drawGeo() {
 <body>
 
 <jsp:include page="header.jsp"></jsp:include>
+<ul class="subul">
+  <li class="subli" ><a class="active" href="#home">전국 양파생산량과 면적 </a></li>
+</ul>
 
-
-<h1>전국 양파생산량과 면적 </h1>
 <div class='container'>
 <div class='c1'>
-<div class='geo_div' id='geo_div'  ></div>
+<div id='geo_div' style="width:100%; height: 500px; margin:auto"></div>
 </div>
-<div class='c4'> 
-<div class='c2'  id="piechart" ></div>
-<div class='c3'id="chart_div"></div>
+<div class='c2'> 
+<div id='piechart' style="width:100%; height: 500px;"></div>
+</div>
+<div class='c3'> 
+<div id='chart_div' style="width: 100%; height: 500px;"></div>
 </div>
 
 </div>
