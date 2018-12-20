@@ -43,6 +43,7 @@ ul.topnav li.right {float: right;}
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+  z-index:100;
 }
 
 .subli {
@@ -81,4 +82,42 @@ ul.topnav li.right {float: right;}
   text-align: left;
   background-color: #8A2BE2;
   color: white;
+}
+
+/* alert 창 */
+
+.swal-text {
+  
+}
+
+.swal-button {
+  padding: 10px 25px;
+  background-color: red;
+  font-size: 16px;
+}
+
+.swal-button {
+  padding: 10px 25px;
+  background-color: red;
+  font-size: 16px;
+}
+
+.swal-button:not([disabled]):hover {
+    background-color: red; 
+}
+
+.swal-footer {
+  background-color: rgb(245, 248, 250);
+  margin-top: 32px;
+  border-top: 1px solid #E9EEF1;
+  overflow: hidden;
+}
+
+.swal-button--cancel {
+    color: #555;
+    background-color: #efefef;
+}
+
+.swal-button--cancel:not([disabled]):hover {
+    background-color: #e8e8e8;
 }

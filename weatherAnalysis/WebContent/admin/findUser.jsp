@@ -6,12 +6,15 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
 
 <table id="customers">
+	<thead>
 	<tr>
 		<th>아이디</th>
 		<th>패스워드</th>
 		<th>이메일</th>
 		<th>회원관리</th>
 	</tr>
+	</thead>
+	<tbody>
 	<c:forEach items="${userlist }" var="userlist">
 	<tr>
 		<td>${userlist.id }</td>
@@ -21,4 +24,7 @@
 
 	</tr>
 	</c:forEach>
+	</tbody>
 </table>
+
+	
