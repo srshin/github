@@ -19,8 +19,8 @@ import com.brain.model.onion.OnionService;
 * @date 2018. 12. 16.
 */
 
-@WebServlet("/onion/output.do")
-public class OutputServlet extends HttpServlet {
+@WebServlet("/onion/onionTopRegion.do")
+public class OnionTopRegionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 //연별 전국 양파 총생산량 변화추	
@@ -33,7 +33,7 @@ public class OutputServlet extends HttpServlet {
 		
 		request.setAttribute("outputList", service.output());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/onion/output.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/onion/onionTopRegion.jsp");
 		rd.forward(request, response);
 		
 		

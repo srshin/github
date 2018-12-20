@@ -22,17 +22,32 @@ import com.google.gson.JsonObject;
 * @author "JungeunPark"
 * @date 2018. 12. 18.
 */
-@WebServlet("/onion/outputChart.do")
-public class outputChartServlet extends HttpServlet {
+@WebServlet("/onion/onionByCondition.do")
+public class OnionByConditionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<OnionVO> list = null;
+		String selectedCondition = request.getParameter("condition");
 		OnionService service = new OnionService();
-		list = service.output();		
-		System.out.println("outputChart");
-		System.out.println(list);
+		List<OnionVO> list = null;
+		
+		if(selectedCondition != null) {
+			System.err.println(selectedCondition);
+			if (selectedCondition.equals("output"))  {
+			list = service.output();	
+			System.out.println("outputChart");
+			System.out.println(list);
+		}	else if (selectedCondition.equals("area")) {
+			list = service.area();	
+			System.out.println("areaChart");
+			System.out.println(list);
+		}	else if (selectedCondition.equals("unitOutput")){
+			list = service.unitOutput();	
+			System.out.println("unitOutputChart");
+			System.out.println(list);
+		}
+		}
 	
 		JsonObject data = new JsonObject();
 		JsonArray arryCols = new JsonArray();
@@ -67,8 +82,17 @@ public class outputChartServlet extends HttpServlet {
 				for(String city : cities) {
 	            	for (OnionVO vo : list) {
 	            		if(vo.getRegion().equals(city)&& vo.getYear().equals(year)) {
-	        	            JsonObject ajaxObjRow1 = new JsonObject();	            			
-						ajaxObjRow1.addProperty("v", vo.getOutput());
+	        	            JsonObject ajaxObjRow1 = new JsonObject();	
+	        	    		if(selectedCondition != null) {
+	        	    			if (selectedCondition.equals("output"))  {
+	        						ajaxObjRow1.addProperty("v", vo.getOutput());
+	        	    		}	else if (selectedCondition.equals("area")) {
+        							ajaxObjRow1.addProperty("v", vo.getArea());
+	        	    		}	else if (selectedCondition.equals("unitOutput")){
+        						ajaxObjRow1.addProperty("v", vo.getUnitOutput());
+	        	    		}
+	        	            
+	        	    		}
 						ajaxArryRowsC.add(ajaxObjRow1);
 						break;
 					}
