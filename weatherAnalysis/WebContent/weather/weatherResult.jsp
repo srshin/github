@@ -10,7 +10,7 @@
 ${oneName}
 ${conditionTitle}
 
-		<table border="1">
+		<table id="customers">
 
 		<c:forEach var="result" items="${resultString}" varStatus="status">
 			<c:if test="${status.first}">
@@ -33,19 +33,19 @@ ${conditionTitle}
 			
 			<c:if test="${!status.first}">
 			<tr>	
- 			<td>${result[0]}</td>
-			<td>${result[1]}</td>
-			<td>${result[2]}</td>
-			<td>${result[3]}</td>
-			<td>${result[4]}</td>
-			<td>${result[5]}</td>
-			<td>${result[6]}</td>
-			<td>${result[7]}</td>
-			<td>${result[8]}</td>
-			<td>${result[9]}</td>
-			<td>${result[10]}</td>
-			<td>${result[11]}</td>
-			<td>${result[12]}</td>
+	 			<td>${result[0]}</td>
+				<td>${result[1]}</td>
+				<td>${result[2]}</td>
+				<td>${result[3]}</td>
+				<td>${result[4]}</td>
+				<td>${result[5]}</td>
+				<td>${result[6]}</td>
+				<td>${result[7]}</td>
+				<td>${result[8]}</td>
+				<td>${result[9]}</td>
+				<td>${result[10]}</td>
+				<td>${result[11]}</td>
+				<td>${result[12]}</td>
 		</tr>
 		</c:if> 
 		</c:forEach>

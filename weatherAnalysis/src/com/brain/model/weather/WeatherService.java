@@ -3,7 +3,7 @@ package com.brain.model.weather;
 import java.util.List;
 
 /**
- * @brief 기상관측 자료(2015~2016) 도출 Service
+ * @brief 기상 관측 자료 도출 Service
  * @details
  * @author "HayeonBaek"
  * @date 2018. 12. 13.
@@ -27,7 +27,11 @@ public class WeatherService {
 
 	public String[][] resultString(String oneName, String condition) {
 
-		int rowNum = 5;
+		String[] years = { "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
+				"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018" };
+
+		int rowNum = years.length + 2;
+		// System.out.println(rowNum);
 		int colNum = 13;
 		int row = 0;
 
@@ -35,25 +39,26 @@ public class WeatherService {
 
 		resultString[0][0] = "연도";
 		resultString[0][1] = "단위생산량";
-		resultString[0][2] = "8월";
+		resultString[0][2] = "(전년도)8월";
 		resultString[0][3] = "9월";
 		resultString[0][4] = "10월";
 		resultString[0][5] = "11월";
 		resultString[0][6] = "12월";
-		resultString[0][7] = "1월";
+		resultString[0][7] = "(금년)1월";
 		resultString[0][8] = "2월";
 		resultString[0][9] = "3월";
 		resultString[0][10] = "4월";
 		resultString[0][11] = "5월";
 		resultString[0][12] = "6월";
 
-		resultString[1][0] = "2013";
-		resultString[2][0] = "2014";
-		resultString[3][0] = "2015";
-		resultString[4][0] = "2016";
-
+		int yeari = 1;
+		for (String s : years) {
+			resultString[yeari++][0] = s;
+		}
 		List<WeatherVO> resultlist = dao.resultList(oneName, condition);
-
+		for (WeatherVO dao : resultlist) {
+			System.out.println(dao);
+		}
 		for (WeatherVO vo : resultlist) {
 			String value = null;
 			// System.out.println(vo);
@@ -70,40 +75,37 @@ public class WeatherService {
 				value = Double.toString(vo.getSunLight());
 			}
 
-			if (vo.getYear().equals("2013"))
-				row = 1;
-			else if (vo.getYear().equals("2014"))
-				row = 2;
-			else if (vo.getYear().equals("2015"))
-				row = 3;
-			else if (vo.getYear().equals("2016"))
-				row = 4;
-			else if (vo.getYear().equals("2017"))
-				row = 5;
+			row = Integer.parseInt(vo.getYear()) - 1998;
+			// System.out.println(row);
 
-			if (row < rowNum)
+			if (row > 0 && row < rowNum)
 				resultString[row][1] = Integer.toString(vo.getUnitOutput());
 
 			int month = Integer.parseInt(vo.getMonth());
 
 			if (month >= 8) {
 				if (row < rowNum)
-					resultString[row][month - 6] = value;
-			} else if (month >= 1 && month <= 6) {
-				// 2013년도 제외
-				if (row - 1 > 0)
-					resultString[row - 1][month + 6] = value;
-			}
+					resultString[row + 1][month - 6] = value;
 
-		}
-		System.out.println("ResultString:");
-		for (int j = 0; j < colNum; j++) {
-			for (int i = 0; i < rowNum; i++) {
-				System.out.print(resultString[i][j] + " ");
+			} else if (month >= 1 && month <= 6) {
+				resultString[row][month + 6] = value;
 			}
-			System.out.println();
 		}
+		String[][] result2= new String[rowNum-10][colNum];
+		int ii=0;
+		System.out.println("ResultString:");
+		for (int i = 0; i < rowNum-1; i++) {
+				if(i>=1 && i<10) 
+					continue;
+				for (int j = 0; j < colNum; j++) {
+					System.out.print(resultString[i][j] + " ");
+					result2[ii][j]= resultString[i][j];
+				}
+				System.out.println();
+				ii++;
+				}
+		
 		System.out.println();
-		return resultString;
+		return result2;
 	}
 }
