@@ -24,7 +24,7 @@ background-color: #FFF;
 padding-left: 20px;
 padding-right: 20px;  
 padding-top : 30px;
-padding-bottom : 80px;
+padding-bottom : 40px;
 border-radius: 5px
 }
 
@@ -108,4 +108,25 @@ padding-left: 20px;
 padding-right: 20px;  
 padding-top : 30px;
 padding-bottom : 80px;
+}
+
+div#here {
+    color: red;
+}
+
+div#here p#success {
+    color: green;
+}
+
+div#here p {
+	margin-bottom : 0px;
+}
+
+i.fas.fa-exclamation-circle {
+	font-size : 30px;
+}
+
+i.fas.fa-check {
+	font-size : 30px;
+	color : green;
 }
