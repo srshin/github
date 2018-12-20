@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* manageUser #2194E0 */
+
 
 #search {
 	padding-left: 10%;
@@ -111,3 +111,24 @@ hr {
 	width : 80%;
 	margin : auto;
 }
+
+/* table pagination */
+
+.page-navigation {
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+.page-navigation a {
+    margin: 0 2px;
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: #8A2BE2;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 2px;
+}
+

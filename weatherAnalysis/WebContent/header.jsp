@@ -6,13 +6,14 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <script> 
 function go() {
 	var user_id = "<%=session.getAttribute("user")%>";
 	if( user_id =="null") {
-		alert("해당 서비스는 로그인 후 이용 가능합니다.");
+		swal("해당 서비스는 로그인 후 이용 가능합니다.");
 	}else {
 		window.location.href ='${pageContext.request.contextPath }/predict/predict.do';
 	}

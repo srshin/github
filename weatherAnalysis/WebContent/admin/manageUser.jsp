@@ -8,22 +8,43 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
 
 function call(userid){
-	ret = confirm("삭제하시겠습니까?");
-	if(ret)
-		location.href='userDelete.do?userid=' + userid;
+	swal({
+        text: "정말로 삭제하시겠습니까?",
+        icon: "warning",
+        buttons: [
+          '삭제 취소',
+          '예, 삭제하겠습니다'
+        ],
+        dangerMode: true,
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+        	location.href='userDelete.do?userid=' + userid;
+        } 
+      });
 }
 </script>
 <script>
 
 function call2(userid){
-	ret = confirm("수정하시겠습니까?");
-	if(ret)
-		location.href='userUpdate.do?userid=' + userid;
+	swal({
+        text: "정말로 수정하시겠습니까?",
+        icon: "warning",
+        buttons: [
+          '수정 취소',
+          '예, 수정하겠습니다'
+        ],
+        dangerMode: true,
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+        	location.href='userUpdate.do?userid=' + userid;
+        } 
+      });
 }
 </script>
 <script>
@@ -42,10 +63,13 @@ function retrieve(){
 		xhttp.open("GET", "finduser.do?" + param);
 		xhttp.send();
 }
-
 </script>
+<script src="//code.jquery.com/jquery-3.1.0.slim.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-paginate.min.js"></script>
+
 </head>
 <body>
+
 <jsp:include page="adminHeader.jsp"></jsp:include>
 
 <div id = "search">
@@ -57,13 +81,16 @@ function retrieve(){
 
 <div id="here">
 <table id="customers">
+	<thead>
 	<tr>
 		<th>아이디</th>
 		<th>패스워드</th>
 		<th>이메일</th>
 		<th>회원관리</th>
 	</tr>
+	</thead>
 	<c:forEach items="${allUser }" var="allUser">
+	<tbody>
 	<tr>
 		<td>${allUser.id }</td>
 		<td>${allUser.password }</td>
@@ -71,7 +98,15 @@ function retrieve(){
 		<td><div class="button"><button class='btn btn-default' onclick="call2('${allUser.id}');">수정</button><button class='btn btn-danger' onclick="call('${allUser.id}');">삭제</button></div></td>
 	</tr>
 	</c:forEach>
+	</tbody>
 </table>
 </div>
+<script>
+$('table').paginate({
+	  
+	  limit: 8
+
+	});
+</script>
 </body>
 </html>
