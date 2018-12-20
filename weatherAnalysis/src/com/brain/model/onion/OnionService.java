@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OnionService {
 	
-	static OnionDAO dao = new OnionDAO();
+	OnionDAO dao = new OnionDAO();
 	
 	public List<OnionVO> annualTotal() {
 		return dao.annualTotal();		
@@ -44,7 +44,6 @@ public class OnionService {
 	public List<OnionVO> unitOutput() {
 		return dao.unitOutput();
 	}
-
 
 }
 

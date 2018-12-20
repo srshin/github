@@ -52,6 +52,7 @@ public class OnionDAO {
 			} finally {
 				OracleDBUtil.dbDisconnect(rs, st, conn);
 			}
+//			System.out.println(onionList);
 			return onionList;		
 		}
 		

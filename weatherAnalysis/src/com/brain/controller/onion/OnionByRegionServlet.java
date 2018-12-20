@@ -21,7 +21,7 @@ import com.brain.model.onion.OnionVO;
  */
 
 @WebServlet("/onion/onionByRegion.do")
-public class onionByRegionServlet extends HttpServlet {
+public class OnionByRegionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

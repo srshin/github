@@ -24,7 +24,7 @@
 	     document.getElementById("here").innerHTML = this.responseText;
 	   }
 	 };
-	 xhttp.open("GET", "onionByRegion.do?"+ param);
+	 xhttp.open("GET", "/onion/onionByRegion.do?"+ param);
 	 xhttp.send();
 }
 </script>    
@@ -61,18 +61,17 @@
 
 <c:set var="path" value="${pageContext.request.contextPath }/onion"></c:set>
 <ul class="subul">
-  <li class="subli" ><a class="active" href="${path }/onion.do">연도별·지역별 생산규모</a></li>
-  <li class="subli"><a  href="${path }/output.do">Top5 지역 생산량 변화 추이</a></li>
-  <li class="subli"><a  href="${path }/area.do">Top5 지역 재배면적 변화 추이</a></li>
-  <li class="subli"><a  href="${path }/unitOutput.do">Top5 지역 생산성 변화 추이</a></li>
+  <li class="subli"><a class="active" href="${path }/onionTopRegion.do">Top5 지역 항목별 변화 추이</a></li>
+  <li class="subli" ><a href="${path }/onion.do">지역별 생산규모 변화추이</a></li>
+<%--   <li class="subli"><a  href="${path }/area.do">Top5 지역 재배면적 변화 추이</a></li>
+  <li class="subli"><a  href="${path }/unitOutput.do">Top5 지역 생산성 변화 추이</a></li> --%>
 </ul>
 
 <h1> 연도별·지역별 양파 총 생산량 </h1>
 지역 : 
 <select name="region" id="region">
   <c:forEach var="region" items="${region}">
-	<option>${region}</option>
-	
+	<option>${region}</option>	
   </c:forEach>
 </select>  
 <button  onclick="retrieve();drawVisualization();">조회</button>
