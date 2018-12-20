@@ -22,17 +22,19 @@ import com.google.gson.JsonObject;
 * @date 2018. 12. 17.
  */
 
-@WebServlet("/onion/onionChart.do")
-public class OnionChartServlet extends HttpServlet {
+@WebServlet("/onion/onionByRegionCharts.do")
+public class OnionByReagionchartsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<OnionVO> list = null;
 		String selectedRegion = request.getParameter("region");
 		OnionService service = new OnionService();
+		
 		if(selectedRegion== null || selectedRegion.equals("")) {
 			 list = service.annualTotal();
 		} else {
+			System.out.println(selectedRegion);
 			 list = service.annualTotalByRegion(selectedRegion);
 		}
 		System.out.println("onionChart");
@@ -41,14 +43,10 @@ public class OnionChartServlet extends HttpServlet {
 		JsonArray arryCols = new JsonArray();
 		JsonArray arrayRows = new JsonArray();
  		String[][] colvals = {{ "string", "연도"}, 
-				{ "number", "생산량"},
-				{ "number", "면적"},
-				{ "number", "단위생산량"},
-				
-				/*label 순서변경 감안 로직	
-				{ "number", "생산량"},
-				{ "number", "단위생산량"},
-				{ "number", "면적"},*/
+ 				
+				{ "number", "생산량 (톤)"},
+				{ "number", "단위생산량 (10a/kg)"},
+				{ "number", "재배면적 (ha)"},
 		};
 		for (String[] s: colvals) {
 			JsonObject col = new JsonObject();
@@ -63,17 +61,7 @@ public class OnionChartServlet extends HttpServlet {
 				JsonObject ajaxObjRow2 = new JsonObject(); 
 				JsonObject ajaxObjRow3 = new JsonObject(); 
 				JsonObject ajaxObjRow4 = new JsonObject(); 
-				ajaxObjRow1.addProperty("v", vo.getYear());
-				ajaxArryRowsC.add(ajaxObjRow1);
-				ajaxObjRow2.addProperty("v", vo.getOutput()/100);
-				ajaxArryRowsC.add(ajaxObjRow2);
-				ajaxObjRow3.addProperty("v", vo.getArea());
-				ajaxArryRowsC.add(ajaxObjRow3);
-				ajaxObjRow4.addProperty("v", vo.getUnitOutput());
-				ajaxArryRowsC.add(ajaxObjRow4);
-				cell.add("c", ajaxArryRowsC);
 
-				/*label 순서변경 감안 로직				
 				ajaxObjRow1.addProperty("v", vo.getYear());
 				ajaxArryRowsC.add(ajaxObjRow1);
 				ajaxObjRow2.addProperty("v", vo.getOutput());
@@ -81,8 +69,9 @@ public class OnionChartServlet extends HttpServlet {
 				ajaxObjRow3.addProperty("v", vo.getUnitOutput());
 				ajaxArryRowsC.add(ajaxObjRow3);
 				ajaxObjRow4.addProperty("v", vo.getArea());
-				ajaxArryRowsC.add(ajaxObjRow4);*/
+				ajaxArryRowsC.add(ajaxObjRow4);
 				
+				cell.add("c", ajaxArryRowsC);
 				arrayRows.add(cell);
 		}
 		data.add("cols", arryCols);

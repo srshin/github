@@ -26,7 +26,7 @@ function go() {
 <ul class="topnav">
 <li><a class="icon" style="padding:0" href="${path }/index.jsp"><img src='${path }/image/brain.jpg' width=50 /></a></li>
 <li><a class="mainmenu" class="active" href="${path }/intro/intro.do">사이트 소개 </a></li>
-<li><a class="mainmenu" href="${path }/onion/onion.do">양파생산량분석</a></li>
+<li><a class="mainmenu" href="${path }/onion/onionTopRegion.do">양파생산량분석</a></li>
 <li><a class="mainmenu" href="${path }/weather/weather.do">기상데이타분석</a></li>
 <li><a class="mainmenu" href="javascript:void(0);" onclick="go();">양파생산량예측</a></li>
 <c:if test = "${sessionScope.user == null }">
