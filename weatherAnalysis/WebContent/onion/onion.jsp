@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/inchang.css">
 
 <title>Brain Mining_양파 생산량 분석</title>
 
@@ -69,20 +70,23 @@
 <%--   <li class="subli"><a  href="${path }/area.do">Top5 지역 재배면적 변화 추이</a></li>
   <li class="subli"><a  href="${path }/unitOutput.do">Top5 지역 생산성 변화 추이</a></li> --%>
 </ul>
-
+<div class="body_container">
 <h1> 각 지역별 양파 생산규모 변화추이 </h1>
-지역 : 
+<div class="select">
+
 <select name="region" id="region">
   <c:forEach var="region" items="${region}">
 	<option>${region}</option>	
   </c:forEach>
 </select>  
-<button  onclick="drawVisualization();">조회</button>
+</div>
+<button  onclick="drawVisualization();" class="btn btn-default">조회</button>
 <br><br>
 
 <div id="chart_div" style="width: 1100px; height: 500px;"></div>
 <br>
 <div id="table_div" style="width: 1100px; height: 500px;"></div>
 <br>
+</div>
 </body>
 </html>

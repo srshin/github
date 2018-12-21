@@ -121,3 +121,10 @@ ul.topnav li.right {float: right;}
 .swal-button--cancel:not([disabled]):hover {
     background-color: #e8e8e8;
 }
+
+.body_container {
+	
+	width : 70%;
+	margin : auto;
+	
+}
