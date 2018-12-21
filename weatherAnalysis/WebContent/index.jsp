@@ -106,6 +106,7 @@ function drawGeo() {
 	chart.draw(data, options);
 }
  </script>
+
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <script>
 	google.charts.load('current', {'packages':['corechart']});
@@ -121,12 +122,18 @@ function drawGeo() {
 	  var data = new google.visualization.DataTable(jsonData);
 	
 	  var options = {
-	    title : '양파 생산량',
+	    title : '<연도별 전국 양파생산규모 및 도매가격 변화 추이>',
+	    titleTextStyle: {
+	        fontSize: 25, 
+	        bold: true,    // true or false
+	    },
+	    
 	    vAxis: {title: '생산량'},
 	    hAxis: {title: '연'},
 	    seriesType: 'bars',
 	    series: {3: {type: 'line'}}
 
+	    
 	  };
 	  var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
 	  chart.draw(data, options);
@@ -143,8 +150,16 @@ function drawGeo() {
 		  var data = new google.visualization.DataTable(jsonData);
 		
 	       var options = {
-	    	          title: '양파 생산량 전국분포',
-	    	        };
+	    	          title: '<2017 양파 생산량 전국분포>',
+	    	          titleTextStyle: {
+/* 	    	              color: <string>,    // any HTML string color ('red', '#cc00cc')*/
+	    	              fontName: 'header', // i.e. 'Times New Roman' 
+	    	              fontSize: 25, // 12, 18 whatever you want (don't specify px)
+	    	              bold: true,    // true or false
+/* 	    	              italic: <boolean>   // true of false  */  
+	    	          	}
+	    	          };
+
 		  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 		  chart.draw(data, options);
 	 	}
