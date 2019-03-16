@@ -1,6 +1,5 @@
 # BrainMining Team Project GitHub
 ## 1st Project 
 See wiki for the project. 
-https://github.com/srshin/github.wiki.git
-
+[Project Overview](https://github.com/srshin/github/wiki/1st-Project-Overview)
 ## 2nd Project
